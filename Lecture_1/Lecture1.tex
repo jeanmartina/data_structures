@@ -7,13 +7,13 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\author{Design and Verification of Security Protocols and Security Ceremonies}
-\title{\vspace{-.7cm}Cryptographic Primitives \\\vspace{-.7cm} Symmetric Cryptography}
+\author{Apresentação e Programa da Disciplina}
+\title{Estruturas de Dados}
 %\setbeamercovered{transparent} 
 \setbeamertemplate{navigation symbols}{} 
 %\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}} 
-\institute{Programa de Pós-Graduacão em Ciências da Computacão \\ Dr. Jean Everson Martina} 
-\date{\vspace{-1cm}August-November 2016} 
+\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim} 
+\date{2016.2} 
 \subject{} 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth,
 height=\paperheight]{../reusable_images/fundo_UFSC.png}}
@@ -24,7 +24,274 @@ height=\paperheight]{../reusable_images/fundo_UFSC.png}}
 height=\paperheight]{../reusable_images/fundo_capa.png}}
 \begin{frame}
 \titlepage
-\includegraphics[scale=0.3]{../reusable_images/brasao_PPGCC.jpg}
+\includegraphics[scale=0.3]{../reusable_images/brasao_INE.png}
+\end{frame}
+}
+
+\begin{frame}{Organização da Disciplina}
+\begin{itemize}
+\item Objetivos
+\item Metodologia
+\item Avaliação
+\item Material Didático
+\item Realização dos Trabalhos
+\item Programa da Disciplina
+\item Bibliografia
+\item Contato com os Docentes
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Objetivos da Disciplina}
+\begin{itemize}
+\item Aprender as técnicas básicas de organização de dados em um computador sob a forma de estruturas de dados:
+\begin{itemize}
+\item na memória;
+\item em meios externos.
+\end{itemize}
+\item Aprender a manipular e implementar estruturas de dados utilizando diversas técnicas de programação atualmente em uso.
+\item Aprender a projetar e a avaliar a eficiência de algoritmos complexos.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Objetivos da Disciplina}
+O aluno deverá:
+\begin{enumerate}
+\item Adquirir o conhecimento necessário para desenvolver programas de computador eficazes e eficientes para a solução de problemas complexos.
+\item Adquirir a experiência prática de desenvolvimento de programas de computador para desenvolver e estimar adequadamente a dificuldade de desenvolvimento de programas complexos.
+\end{enumerate}
+\begin{block} {Importante!}
+O domínio de Estruturas de Dados será indispensável para praticamente tudo o que você for aprender daqui para frente.
+\end{block}
+\end{frame}
+
+\begin{frame}{Metodologia de Ensino}
+\begin{itemize}
+\item Disciplina eminentemente prática, com ênfase na aplicação dos conhecimentos;
+\item Aulas teóricas alternadas com aulas práticas;
+\begin{itemize}
+\item Serão vistos aspectos de modelagem, algoritmos, técnicas de implementação e bases teóricas dos modelos.
+\end{itemize}
+\item Aulas práticas em laboratório:
+\begin{itemize}
+\item Ministradas pelo estagiário de docência e pelo professor;
+\item Sempre iniciarão com uma complementação visando a implementação do que foi visto na aula teórica;
+\item Objetivam prover oportunidade para o aluno fixar o que foi visto e aprimorar as suas técnicas de programação.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Metodologia de Ensino - Implementação}
+\begin{itemize}
+\item Metodologias de Implementação/Codificação:
+\begin{itemize}
+\item Serão vistas em paralelo às estruturas de dados;
+\item Reveremos a evolução histórica das técnicas atualmente em uso;
+\end{itemize}
+\item Técnicas de Implementação de Programas:
+\begin{itemize}
+\item Programação Orientada a Objetos;
+\item Meta-Programação;
+\item Uso de recursos avançados da Linguagem;
+\end{itemize}
+\item Linguagens de Programação adequadas às Técnicas:
+\begin{itemize}
+\item Discussão da adequação das linguagens;
+\item Exemplos em outras linguagens.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Critérios de Avaliação}
+\begin{itemize}
+\item 7 Notas (Pesos: 2,1,1,1,2,1,2):
+\begin{itemize}
+\item 2: média dos pequenos trabalhos (entre 12 e 18);
+\item 1: projeto de Implementação I;
+\item 1: teste parcial teórico ;
+\item 1: teste parcial prático de Implementação;
+\item 2: projeto de Implementação II;
+\item 1: teste final prático de Implementação;
+\item 2: teste final teórico ;
+\end{itemize}
+\end{itemize}
+\begin{block}{Avaliação das Implementações:}
+Automatizada pelo moodle segundo critérios definidos no enunciado
+\end{block}
+\end{frame}
+
+\begin{frame}{Recuperação}
+\begin{itemize}
+\item Conceito ''Menção I" somente será cogitado de acordo com a legislação da UFSC;
+\item A recuperação pode não ocorrer porque a disciplina é mais que 50\% prática;
+\item A recuperação será realizada através de um trabalho de implementação seguido de entrevista;
+\begin{itemize}
+\item O trabalho de recuperação será individual;
+\item O trabalho de recuperação terá peso igual ao da média do semestre, de acordo com a legislação da UFSC.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Material Didático}
+\begin{itemize}
+\item Material da disciplina disponível na Internet (http://moodle.ufsc.br/):
+\begin{itemize}
+\item Fio condutor das aulas para o aluno; 
+\item Não usar como única fonte;
+\item Cronogramas, listas de trabalhos e datas; 
+\item Plano de Ensino;
+\item Transparências dadas em aula;
+\item Arquivos de dados para exercícios e programas-exemplo;
+\item Links para sites com manuais e documentação útil para programação.
+\end{itemize}
+\item Livros.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Realização dos Trabalhos}
+\begin{itemize}
+\item Os trabalhos pequenos são todos individuais;
+\item Equipes de 2 pessoas (somente trabalhos grandes):
+\begin{itemize}
+\item É importante aprender a realizar trabalhos de implementação em equipe;
+\end{itemize}
+\item Implementação:
+\begin{itemize}
+\item ANSI C++ - OOP;
+\item Plataforma homologada é somente o VPL;
+\end{itemize}
+\item Ferramentas \& Máquinas:
+\begin{itemize}
+\item Aproveite as Aulas de Laboratório;
+\item Linux e Eclipse para C/C++;
+\item Compiladores: gcc / g++
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Entrega dos Trabalhos}
+\begin{itemize}
+\item Data:
+\begin{itemize}
+\item Deverão ser entregues na data especificada no Moodle;
+\item São aceitos com atraso mas com 50\% de desconto na nota por atraso;
+\item Projetos de implementação também;
+\end{itemize}
+\item Serão aceitos os trabalhos que:
+\begin{itemize}
+\item Satisfizerem as especificações / enunciados dados;
+\item Utilizarem a linguagem e a técnica de programação especificadas;
+\item Utilizarem codificação de acordo com os padrões internacionais para a linguagem especificada;
+\item Estiverem devidamente documentados.
+\item Que executem na plataforma homologada.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Programa da Disciplina}
+\begin{itemize}
+\item Data:
+\begin{itemize}
+\item Deverão ser entregues na data especificada no Moodle;
+\item São aceitos com atraso mas com 50\% de desconto na nota por atraso;
+\item Projetos de implementação também;
+\end{itemize}
+\item Serão aceitos os trabalhos que:
+\begin{itemize}
+\item Satisfizerem as especificações / enunciados dados;
+\item Utilizarem a linguagem e a técnica de programação especificadas;
+\item Utilizarem codificação de acordo com os padrões internacionais para a linguagem especificada;
+\item Estiverem devidamente documentados;
+\item Que executem na plataforma homologada.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Controle de Freqüência}
+\begin{itemize}
+\item O controle de freqüência segue as regulamentações da UFSC para cursos presenciais;
+\item É obrigatório 75\% de presença para aprovação;
+\item O controle de freqüência vai ser feito diretamente no moodle da disciplina;
+\item O controle de freqüência poderá ser feito de forma automatizada usando a carteirinha do RU;
+\begin{itemize}
+\item Se você ainda não tem uma é so ir na secretaria do RU e emitir a sua.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Programa da Disciplina}
+\begin{itemize}
+\item Introdução e Aspectos Gerais da Disciplina;
+\item Introdução à Programação C++;
+\item Listas, Pilhas e Filas utilizando Vetores (arrays);
+\item Gerência e Alocação Dinâmica de Memória;
+\item Lista Encadeada;
+\item Fila e Pilha Baseados em Listas Encadeadas;
+\item Lista Duplamente Encadeada;
+\item Lista Circular;
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Programa da Disciplina}
+\begin{itemize}
+\item Conceitos de Complexidade de Algoritmos;
+\item Introdução a Árvores;
+\item Árvores I;
+\item Árvores de Busca II;
+\item Hashing;
+\item Gerência de Arquivos;
+\item Ordenação;
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Bibliografia}
+\begin{enumerate}
+\item Material de Estruturas de Dados:
+\begin{itemize}
+\item Horowitz: Estruturas de Dados. Ed. Campus;
+\item Wirth: Data Structures + Algorithms = Programs;
+\item Outros livros, a maioria em inglês, todos disponíveis na BU ou no INE;
+\end{itemize}
+\item Material sobre  C++:
+\begin{itemize}
+\item Livros sobre Estruturas de Dados em “C” e C++;
+\item Material sobre linguagem C++;
+\end{itemize}
+\item Bibliografia de Ferramentas de Programação:
+\begin{itemize}
+\item Livros sobre Unix / Linux;
+\item Manuais de Editores;
+\item Manuais de Programação;
+\item Material Online.
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Contato e Marcação de Horários}
+\begin{itemize}
+\item Monitoria: será disponibilizado um horário por semana para atendimento pelo estagiário de docência ou bolsista da disciplina;
+\item Procedimento: 
+\begin{itemize}
+\item Envie e-mail explicando seu problema;
+\item Utilize sempre o Fórum de Discussão;
+\item Se possível, o problema será resolvido por e-mail;
+\item Caso contrário, será indicado o horário de atendimento.
+\end{itemize}
+\item Marcação de Horários
+\begin{itemize}
+\item Professores por mensagem no moodle;
+\item Estagiário de docência e bolsista por e-mail divulgado no moodle;
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+
+{\LARGE Perguntas????}
+
 \end{frame}
 }
 
@@ -33,10 +300,12 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \usebackgroundtemplate{\includegraphics[width=\paperwidth,
 height=\paperheight]{../reusable_images/fundo_capa.png}}
 \begin{frame}
+\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm} 
+\includegraphics[scale=0.95]{../reusable_images/by.png}
 
-{\LARGE Questions????}
+\vspace{1cm}
+Este trabalho está licenciado sob uma Licença Creative Commons Atribuição 4.0 Internacional. Para ver uma cópia desta licença, visite http://creativecommons.org/licenses/by/4.0/.
 
 \end{frame}
 }
-
 \end{document}
