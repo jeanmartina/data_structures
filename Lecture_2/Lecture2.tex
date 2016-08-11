@@ -1,0 +1,306 @@
+\documentclass[12pt]{beamer}
+\usetheme{Pittsburgh}
+\usecolortheme{seagull}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Introdução ao C++}
+\title{Estruturas de Dados}
+%\setbeamercovered{transparent} 
+\setbeamertemplate{navigation symbols}{} 
+%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}} 
+\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim} 
+\date{2016.2} 
+\subject{} 
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_UFSC.png}}
+\begin{document}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+\titlepage
+\includegraphics[scale=0.3]{../reusable_images/brasao_INE.png}
+\end{frame}
+}
+
+\begin{frame}{Visão Geral}
+\begin{itemize}
+\item Histórico da Linguagem;
+\item Programa C++: header, source – função main();
+\item GCC/G++;
+\item Arquivos objeto, bibliotecas dinâmicas e estáticas;
+\item \#include, \#define, namespaces, typedefs;
+\item Ponteiros, Referências, arrays, primitivas, estruturas de controle;
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Características do C++}
+\begin{itemize}
+\item Linguagem multi-paradigma;
+\item Programação Procedural;
+\item Orientação a objetos;
+\item Meta Programação;
+\item Desalocação memória – Decisão cabe ao programador;
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Histórico}
+\begin{itemize}
+\item Criada por Bjarne Stroustrup em 1979 no Bell Labs da AT\&T e inicialmente chamada de ``C with classes”;
+\item Em 1983 passou a ser chamada C++;
+\item Ao longo do tempo incorporou novas funcionalidades como:
+\begin{itemize}
+\item Herança múltipla; 
+\item Sobreescrita de operadores;
+\item Templates;
+\item Entre outras coisas que veremos ao longo do curso.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Histórico}
+\begin{itemize}
+\item Possui compatibilidade com C;
+\item Um compilador C++ deve compilar um programa escrito em C;
+\item Existem vários comiladores da linguagem;
+\item É um linguagem padronizada internacionamelmente:
+\begin{itemize}
+\item Em 1998 foi definido um padrão ISO para a linguagem; 
+\item Revisado em 2003;
+\item Revisado em 2011;
+\item Revisado em 2014;
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{GCC/G++}
+\begin{itemize}
+\item GNU Compiler Collection;
+\item Compilador originalmente desenvolvido focando a linguagem C, chamava-se GNU C 
+Compiler;
+\item Ao longo do anos passou a contemplar outras linguagens, como C++;
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Programa C++ - Arquivos}
+\begin{itemize}
+\item Header - Definições visíveis a outros headers e ao compilador;
+\item Sources - Corpo de métodos e funções;
+\item Implemented Headers - Headers com implementado que tem que ser instrumentada pelo compilador;
+\item Função Main - Função inicial invocada pelo executável;
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Programa exemplo}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+#include <iostream>  // std::cout
+int main()
+{
+    // Um programa bastante simples em C++, utilizando
+    // tipos integrais e texto, e imprimindo 
+    // algumas informacoes na tela:
+    int year = 2016;
+    unsigned age = 23;
+    std::string name = "Tarcisio";
+
+    std::cout << "Hello, " << name
+              << ". I see you were born in "
+              << year - age << "!\n";
+    return 0;
+}
+\end{lstlisting}
+\footnote{https://gitlab.com/tarcisioe/cpp/}
+\end{frame}
+
+\begin{frame}{Programa exemplo}
+\begin{itemize}
+\item Como podemos ver, começamos o programa com duas variáveis;
+\item Variáveis em C++ possuem um tipo e um valor;
+\item O tipo de uma variável nunca muda, mas seu valor pode mudar durante a execução do programa;
+\item A variável `year` é uma variável do tipo `int`, que é utilizado para representar números inteiros com sinal;
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Programa exemplo}
+\begin{itemize}
+\item A variável `age`, por sua vez, representa uma idade, que não pode ser negativa. Por isso, utilizamos o tipo `unsigned`; 
+\item A variável `name`, por sua vez, é de um tipo não-primitivo, ou seja, um tipo definido em C++, em algum lugar da biblioteca padrão;
+\item Após as variáveis, a linha iniciada em `std::cout` utiliza o operador `<<` para escrever coisas na tela com a representação que C++ utiliza.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Realização dos Trabalhos}
+\begin{itemize}
+\item Os trabalhos pequenos são todos individuais;
+\item Equipes de 2 pessoas (somente trabalhos grandes):
+\begin{itemize}
+\item É importante aprender a realizar trabalhos de implementação em equipe;
+\end{itemize}
+\item Implementação:
+\begin{itemize}
+\item ANSI C++ - OOP;
+\item Plataforma homologada é somente o VPL;
+\end{itemize}
+\item Ferramentas \& Máquinas:
+\begin{itemize}
+\item Aproveite as Aulas de Laboratório;
+\item Linux e Eclipse para C/C++;
+\item Compiladores: gcc / g++
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Entrega dos Trabalhos}
+\begin{itemize}
+\item Data:
+\begin{itemize}
+\item Deverão ser entregues na data especificada no Moodle;
+\item São aceitos com atraso mas com 50\% de desconto na nota por atraso;
+\item Projetos de implementação também;
+\end{itemize}
+\item Serão aceitos os trabalhos que:
+\begin{itemize}
+\item Satisfizerem as especificações / enunciados dados;
+\item Utilizarem a linguagem e a técnica de programação especificadas;
+\item Utilizarem codificação de acordo com os padrões internacionais para a linguagem especificada;
+\item Estiverem devidamente documentados.
+\item Que executem na plataforma homologada.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Programa da Disciplina}
+\begin{itemize}
+\item Data:
+\begin{itemize}
+\item Deverão ser entregues na data especificada no Moodle;
+\item São aceitos com atraso mas com 50\% de desconto na nota por atraso;
+\item Projetos de implementação também;
+\end{itemize}
+\item Serão aceitos os trabalhos que:
+\begin{itemize}
+\item Satisfizerem as especificações / enunciados dados;
+\item Utilizarem a linguagem e a técnica de programação especificadas;
+\item Utilizarem codificação de acordo com os padrões internacionais para a linguagem especificada;
+\item Estiverem devidamente documentados;
+\item Que executem na plataforma homologada.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Controle de Freqüência}
+\begin{itemize}
+\item O controle de freqüência segue as regulamentações da UFSC para cursos presenciais;
+\item É obrigatório 75\% de presença para aprovação;
+\item O controle de freqüência vai ser feito diretamente no moodle da disciplina;
+\item O controle de freqüência poderá ser feito de forma automatizada usando a carteirinha do RU;
+\begin{itemize}
+\item Se você ainda não tem uma é so ir na secretaria do RU e emitir a sua.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Programa da Disciplina}
+\begin{itemize}
+\item Introdução e Aspectos Gerais da Disciplina;
+\item Introdução à Programação C++;
+\item Listas, Pilhas e Filas utilizando Vetores (arrays);
+\item Gerência e Alocação Dinâmica de Memória;
+\item Lista Encadeada;
+\item Fila e Pilha Baseados em Listas Encadeadas;
+\item Lista Duplamente Encadeada;
+\item Lista Circular;
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Programa da Disciplina}
+\begin{itemize}
+\item Conceitos de Complexidade de Algoritmos;
+\item Introdução a Árvores;
+\item Árvores I;
+\item Árvores de Busca II;
+\item Hashing;
+\item Gerência de Arquivos;
+\item Ordenação;
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Bibliografia}
+\begin{enumerate}
+\item Material de Estruturas de Dados:
+\begin{itemize}
+\item Horowitz: Estruturas de Dados. Ed. Campus;
+\item Wirth: Data Structures + Algorithms = Programs;
+\item Outros livros, a maioria em inglês, todos disponíveis na BU ou no INE;
+\end{itemize}
+\item Material sobre  C++:
+\begin{itemize}
+\item Livros sobre Estruturas de Dados em “C” e C++;
+\item Material sobre linguagem C++;
+\end{itemize}
+\item Bibliografia de Ferramentas de Programação:
+\begin{itemize}
+\item Livros sobre Unix / Linux;
+\item Manuais de Editores;
+\item Manuais de Programação;
+\item Material Online.
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Contato e Marcação de Horários}
+\begin{itemize}
+\item Monitoria: será disponibilizado um horário por semana para atendimento pelo estagiário de docência ou bolsista da disciplina;
+\item Procedimento: 
+\begin{itemize}
+\item Envie e-mail explicando seu problema;
+\item Utilize sempre o Fórum de Discussão;
+\item Se possível, o problema será resolvido por e-mail;
+\item Caso contrário, será indicado o horário de atendimento.
+\end{itemize}
+\item Marcação de Horários
+\begin{itemize}
+\item Professores por mensagem no moodle;
+\item Estagiário de docência e bolsista por e-mail divulgado no moodle;
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+
+{\LARGE Perguntas????}
+
+\end{frame}
+}
+
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm} 
+\includegraphics[scale=0.95]{../reusable_images/by.png}
+
+\vspace{1cm}
+Este trabalho está licenciado sob uma Licença Creative Commons Atribuição 4.0 Internacional. Para ver uma cópia desta licença, visite http://creativecommons.org/licenses/by/4.0/.
+
+\end{frame}
+}
+\end{document}
