@@ -1,8 +1,8 @@
-\documentclass[12pt]{beamer}
+\documentclass[12pt,table,xcolor={dvipsnames}]{beamer}
 \usetheme{Pittsburgh}
 \usecolortheme{seagull}
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+\usepackage[brazilian]{babel}
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage{amsfonts}
@@ -98,7 +98,7 @@ Compiler;
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Programa exemplo}
+\begin{frame}[fragile]{Header Exemplo}
 \lstset{language=C++,
           keywordstyle=\color{blue}\ttfamily,
           stringstyle=\color{red}\ttfamily,
@@ -107,176 +107,839 @@ Compiler;
           basicstyle=\ttfamily\footnotesize
           }
 \begin{lstlisting}
-#include <iostream>  // std::cout
-int main()
-{
-    // Um programa bastante simples em C++, utilizando
-    // tipos integrais e texto, e imprimindo 
-    // algumas informacoes na tela:
-    int year = 2016;
-    unsigned age = 23;
-    std::string name = "Tarcisio";
+// in myclass.h
+#ifndef MYCLASS_H
+#define MYCLASS_H
 
-    std::cout << "Hello, " << name
-              << ". I see you were born in "
-              << year - age << "!\n";
-    return 0;
+class MyClass {
+ public:
+  void foo();
+  float bar;
+};
+#endif 
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Source Exemplo}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+// in myclass.cpp
+#include "myclass.h"
+#include <iostream>
+
+void MyClass::foo() {
+  std::cout<<"Hello World!"<<std::endl;
 }
 \end{lstlisting}
-\footnote{https://gitlab.com/tarcisioe/cpp/}
 \end{frame}
 
-\begin{frame}{Programa exemplo}
-\begin{itemize}
-\item Como podemos ver, começamos o programa com duas variáveis;
-\item Variáveis em C++ possuem um tipo e um valor;
-\item O tipo de uma variável nunca muda, mas seu valor pode mudar durante a execução do programa;
-\item A variável `year` é uma variável do tipo `int`, que é utilizado para representar números inteiros com sinal;
-\end{itemize}
+
+\begin{frame}[fragile]{HPP Exemplo}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+// in myclass.hpp
+#include <iostream>
+
+template <class T>
+class MyClass {
+ public:
+  void foo(){
+   std::cout<<"Hello World!"<<std::endl;
+  }
+  T bar;
+};
+\end{lstlisting}
 \end{frame}
 
-\begin{frame}{Programa exemplo}
-\begin{itemize}
-\item A variável `age`, por sua vez, representa uma idade, que não pode ser negativa. Por isso, utilizamos o tipo `unsigned`; 
-\item A variável `name`, por sua vez, é de um tipo não-primitivo, ou seja, um tipo definido em C++, em algum lugar da biblioteca padrão;
-\item Após as variáveis, a linha iniciada em `std::cout` utiliza o operador `<<` para escrever coisas na tela com a representação que C++ utiliza.
-\end{itemize}
+\begin{frame}[fragile]{Programa Exemplo}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+//in main.cpp
+//#include "myclass.h"  // defines MyClass
+#include "myclass.hpp"  // defines MyClass
+
+int main()
+{
+  //MyClass* a = new MyClass(); 
+  MyClass<int>* a = new MyClass<int>();
+  a->foo();
+  return 0;
+}
+\end{lstlisting}
 \end{frame}
 
-\begin{frame}{Realização dos Trabalhos}
-\begin{itemize}
-\item Os trabalhos pequenos são todos individuais;
-\item Equipes de 2 pessoas (somente trabalhos grandes):
-\begin{itemize}
-\item É importante aprender a realizar trabalhos de implementação em equipe;
-\end{itemize}
-\item Implementação:
-\begin{itemize}
-\item ANSI C++ - OOP;
-\item Plataforma homologada é somente o VPL;
-\end{itemize}
-\item Ferramentas \& Máquinas:
-\begin{itemize}
-\item Aproveite as Aulas de Laboratório;
-\item Linux e Eclipse para C/C++;
-\item Compiladores: gcc / g++
-\end{itemize}
-\end{itemize}
+\begin{frame}[fragile]{Compilando Programa Exemplo}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+$ g++ main.cpp -o hello_world -std=c++11 -Werror 
+$ ./hello_world 
+$ Hello World!
+\end{lstlisting}
 \end{frame}
 
-\begin{frame}{Entrega dos Trabalhos}
-\begin{itemize}
-\item Data:
-\begin{itemize}
-\item Deverão ser entregues na data especificada no Moodle;
-\item São aceitos com atraso mas com 50\% de desconto na nota por atraso;
-\item Projetos de implementação também;
-\end{itemize}
-\item Serão aceitos os trabalhos que:
-\begin{itemize}
-\item Satisfizerem as especificações / enunciados dados;
-\item Utilizarem a linguagem e a técnica de programação especificadas;
-\item Utilizarem codificação de acordo com os padrões internacionais para a linguagem especificada;
-\item Estiverem devidamente documentados.
-\item Que executem na plataforma homologada.
-\end{itemize}
-\end{itemize}
-\end{frame}
 
-\begin{frame}{Programa da Disciplina}
+\begin{frame}[fragile]{Diretiva \#include}
 \begin{itemize}
-\item Data:
-\begin{itemize}
-\item Deverão ser entregues na data especificada no Moodle;
-\item São aceitos com atraso mas com 50\% de desconto na nota por atraso;
-\item Projetos de implementação também;
-\end{itemize}
-\item Serão aceitos os trabalhos que:
-\begin{itemize}
-\item Satisfizerem as especificações / enunciados dados;
-\item Utilizarem a linguagem e a técnica de programação especificadas;
-\item Utilizarem codificação de acordo com os padrões internacionais para a linguagem especificada;
-\item Estiverem devidamente documentados;
-\item Que executem na plataforma homologada.
-\end{itemize}
+\item Informações sobre arquivos, símbolos e tipos interpretadas no pré-processamento da compilação;
+\item Avisa ao compilador quais headers ele precisa carregar para pré-processar as instruções do arquivo em questão, mais ou menos como o import do Java;
+\item Pode ser utilizado tanto no header quanto no source;
+\item Evite \#includes desnecessários no header, isso torna a etapa de análise mais custosa.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Controle de Freqüência}
+\begin{frame}[fragile]{Diretiva \#include}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
 \begin{itemize}
-\item O controle de freqüência segue as regulamentações da UFSC para cursos presenciais;
-\item É obrigatório 75\% de presença para aprovação;
-\item O controle de freqüência vai ser feito diretamente no moodle da disciplina;
-\item O controle de freqüência poderá ser feito de forma automatizada usando a carteirinha do RU;
+\item \#include pode ser usar para escolher código durante a compilação;
+\begin{lstlisting}
+#include "structs/my_struct.h"
+ int main(){
+  myStruct ms;
+ }
+\end{lstlisting}
+\item \$ g++ include.cc -std=c++11 -Werror;
+\begin{lstlisting}
+#include "my_struct.h"
+ int main(){
+  myStruct ms;
+ }
+\end{lstlisting}
+\item \$ g++ include.cc -I structs -std=c++11 -Werror.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Diretiva \#include}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
 \begin{itemize}
-\item Se você ainda não tem uma é so ir na secretaria do RU e emitir a sua.
+\begin{lstlisting}
+#include <list>
+\end{lstlisting}
+\item Procura o header nos diretórios do sistema e aqueles passados como parâmetro ao compilador.
+\\
+\begin{lstlisting}
+#include "my_struct.h"
+\end{lstlisting}
+\item Procura o header primeiro no diretório que contém o arquivo sendo compilado, e depois nos diretórios do sistema e aqueles passados como parâmetro ao compilador.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Diretiva \#define}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Atribui um valor a um símbolo;
+\item Cada vez que o pré-processador encontra este símbolo no código ele substitui o símbolo por esse valor.
+\begin{lstlisting}
+#define max_iterations 1000	
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Diretiva \#define}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Também pode ser usado para definir "macros", pequenos trechos de código que são colados cada vez que o pré-processador identifica o símbolo associado.
+\begin{lstlisting}
+#define getmax(a,b) ((a)>(b)?(a):(b))
+
+int main() {
+ int x = 10;
+ int y = getmax(x,5); //y vale 10
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Diretiva \#define}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Com a sustituição feita ele fica assim:
+\begin{lstlisting}
+#define getmax(a,b) ((a)>(b)?(a):(b))
+
+int main() {
+ int x = 10;
+ int y =  ((x)>(5)?(x):(5));; //y vale 10
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Diretiva \#define}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item So devemos usar quando o código é pequeno e existe um real conhecimento do fluxo das instruções;
+\item Desgraças podem acontecer e o código colado pelo pré-processador pode tomar um rumo inesperado;
+\item Como o código é "colado", não existe ônus de ter que colocar o endereço da instrução na pilha como em uma chamada de função; 
+\item Em uma próxima aula discutiremos isso ao ver funções inline.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Diretiva \textit{namespace}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Estabelecem o domínio ao qual declarações (classes, structs, metaclasses) fazem parte;
+\item É utilizado para organizar o código em diferentes domínios, que dependendo da
+estrutura de diretórios do código fonte; 
+\item Apresentam uma leve semelhança com a organização em pacotes do java;
+\item Também serve para eliminar ambigüidades.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Diretiva \textit{namespace}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\begin{lstlisting}
+#include "myclass.h"
+#include <iostream>
+void MyClass::foo() {
+  std::cout<<"Hello World!"<<std::endl;
+}\end{lstlisting}
+\item Passamos a não precisar chamar as funcões com seu nome completo
+\begin{lstlisting}
+#include "myclass.h"
+#include <iostream>
+
+using namespace std;
+void MyClass::foo() {
+  cout<<"Hello World!"<<endl;
+}
+\end{lstlisting}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{HPP Exemplo \textit{namespace}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+// in myclass.hpp
+#include <iostream>
+
+using namespace templates;
+
+template <class T>
+class MyClass {
+ public:
+  void foo(){
+   std::cout<<"Hello World!"<<std::endl;
+  }
+  T bar;
+};
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Programa Exemplo \textit{namespace}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+//in main.cpp
+#include "myclass.h"  // defines MyClass
+#include "myclass.hpp"  // defines MyClass
+
+using namespace std;
+
+int main()
+{
+  MyClass* a; //ambiguidade
+  MyClass<int>* b; //ambiguidade
+}
+\end{lstlisting}
+\begin{itemize}
+\item Qual das implementacões de MyClass foi usada?
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Programa Exemplo \textit{namespace}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+//in main.cpp
+#include "myclass.h"  // defines MyClass
+#include "myclass.hpp"  // defines MyClass
+
+using namespace std;
+
+int main()
+{
+  std::MyClass* a; 
+  templates::MyClass<int>* b; 
+}
+\end{lstlisting}
+\begin{itemize}
+\item Se resolve dando o nome completo!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Diretiva \textit{typedef}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+//in main.cpp
+#include "myclass.h"  // defines MyClass
+#include "myclass.hpp"  // defines MyClass
+
+using namespace std;
+typedef MyClass<int> MinhaClasseInteira;
+
+int main()
+{
+  MyClass* a; 
+  MinhaClasseInteira* b; 
+}
+\end{lstlisting}
+\begin{itemize}
+\item Se resolve criando uma nova definição de tipo.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Tipos Primitivos}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item O tamanho é medido em word ou frações de words;
+\item O tamanho é flexível e definido em cada plataforma;
+\item Inteiros com e sem sinal:
+\begin{itemize}
+\item char, unsigned char
+\item short, unsigned short
+\item int, unsigned int
+\item long, unsigned long
+\item long long, unsigned long long
 \end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Programa da Disciplina}
+\begin{frame}[fragile]{Tipos Primitivos}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
 \begin{itemize}
-\item Introdução e Aspectos Gerais da Disciplina;
-\item Introdução à Programação C++;
-\item Listas, Pilhas e Filas utilizando Vetores (arrays);
-\item Gerência e Alocação Dinâmica de Memória;
-\item Lista Encadeada;
-\item Fila e Pilha Baseados em Listas Encadeadas;
-\item Lista Duplamente Encadeada;
-\item Lista Circular;
+\item Ponto flutuante:
+\begin{itemize}
+\item float
+\item double
+\item long double
+\end{itemize}
+\item Outros tipos:
+\begin{itemize}
+\item bool
+\item void
+\item decltype(nullptr)
+\end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Programa da Disciplina}
+\begin{frame}[fragile]{Variáveis, Ponteiros e Referências}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
 \begin{itemize}
-\item Conceitos de Complexidade de Algoritmos;
-\item Introdução a Árvores;
-\item Árvores I;
-\item Árvores de Busca II;
-\item Hashing;
-\item Gerência de Arquivos;
-\item Ordenação;
+\item Variável quando declarada tem um tipo que determina o seu tamanho;
+\item Variável faz com que o S.O. reserve memória suficiente para o tipo e disponibilize para o programa;
+\item Ponteiro é uma variável especial que guarda endereços e não dados;
+\item Ponteiro quando declarado tem um tipo que determina qual o tipo do endereço que ele armazena;
+\item Ponteiro faz com que o S.O. reserve memória suficiente para armazenar um endereço de memória;
+\item Referência é um segundo nome para uma variável.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Bibliografia}
-\begin{enumerate}
-\item Material de Estruturas de Dados:
+\begin{frame}[fragile]{Variáveis, Ponteiros e Referências}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
 \begin{itemize}
-\item Horowitz: Estruturas de Dados. Ed. Campus;
-\item Wirth: Data Structures + Algorithms = Programs;
-\item Outros livros, a maioria em inglês, todos disponíveis na BU ou no INE;
+\item * é chamado de indireção. Trabalha com o valor do endereço de memoria guardado no ponteiro;
+\item \& retorna o endereço de memória de uma variável. Também serve para criar uma refrência;
+\item Podemos ter uma dupla indireção com **;
+\item Podemos (em C++11) ter uma referência não constatnte com \&\&.
 \end{itemize}
-\item Material sobre  C++:
-\begin{itemize}
-\item Livros sobre Estruturas de Dados em “C” e C++;
-\item Material sobre linguagem C++;
-\end{itemize}
-\item Bibliografia de Ferramentas de Programação:
-\begin{itemize}
-\item Livros sobre Unix / Linux;
-\item Manuais de Editores;
-\item Manuais de Programação;
-\item Material Online.
-\end{itemize}
-\end{enumerate}
 \end{frame}
 
-\begin{frame}{Contato e Marcação de Horários}
+\begin{frame}[fragile]{Variáveis, Ponteiros e Referências}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
 \begin{itemize}
-\item Monitoria: será disponibilizado um horário por semana para atendimento pelo estagiário de docência ou bolsista da disciplina;
-\item Procedimento: 
-\begin{itemize}
-\item Envie e-mail explicando seu problema;
-\item Utilize sempre o Fórum de Discussão;
-\item Se possível, o problema será resolvido por e-mail;
-\item Caso contrário, será indicado o horário de atendimento.
+\item Modelo da memória de um computador:
 \end{itemize}
-\item Marcação de Horários
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}| }
+\hline
+& & & & \\ \hline
+& & & & \\ \hline
+& & & & \\ \hline
+& & & & \\ \hline
+& & & & \\ \hline
+\end{tabular}
+}
 \begin{itemize}
-\item Professores por mensagem no moodle;
-\item Estagiário de docência e bolsista por e-mail divulgado no moodle;
+\item É uma sequencia de palavras de memória endereçaveis pela sua posição.
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelo de Memória}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item int a = 10;
+\item Politica do S.O. Escolhe o endereço 6;
+\item Modelo da memória de um computador:
+\end{itemize}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}| }
+\hline
+& & & & \\ \hline
+10 & & & & \\ \hline
+& & & & \\ \hline
+& & & & \\ \hline
+& & & & \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}[fragile]{Declarando Variáveis e Ponteiros}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item int a = 10;
+\item int* b = \&a;
+\item Politica do S.O. Escolhe o endereço 9 para o ponteiro;
+\item Modelo da memória de um computador:
+\end{itemize}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}| }
+\hline
+& & & & \\ \hline
+10 & & & 6 & \\ \hline
+& & & & \\ \hline
+& & & & \\ \hline
+& & & & \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}[fragile]{Declarando Variáveis e Ponteiros}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+#include <iostream>
+
+using namespace std;
+
+int main(){
+ int a = 5;
+ int * b = &a; 
+ cout<<"O valor de a "<<a<<" o endereco de a e "<<&a<<endl;
+ cout<<"b contem o endereco "<<b<<" o conteudo do endereco de b e: "<<*b<<endl ; 
+}
+\end{lstlisting}
+\begin{itemize}
+\item Executar algumas vezes no VPL.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Declarando Variáveis e Ponteiros}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+#include <iostream>
+
+using namespace std;
+
+int main(){
+ int a = 5;
+ int * b = &a; 
+ *b += a;
+ a *= (*b);
+ std::cout<<a<<std::endl; 
+}
+\end{lstlisting}
+\begin{itemize}
+\item O que imprime esse código?
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Referências}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Uma referência é como um "apelido" a uma outra variável;
+\item O S.O. não aloca uma nova word para uma referência;
+\item Tal qual um ponteiro, a referência apenas "referencia" algum endereço de memória;
+\item Uma vez criada, não há como distinguir entre uma referência e o dado por ela referenciado;
+\item Referência \& só aponta para um valor durante a sua vida;
+\item Referência \&\& pode mudar (somente no std11);
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Variáveis, Ponteiros e Referências}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+int main(){
+ int a = 3;
+ int b = 4;
+ int * p = &b;
+ int & r = b;
+ r += 2; // b agora vale 6
+ p = &a; // p aponta para "a"
+ r = a; // r ainda referencia b.
+}
+\end{lstlisting}
+\begin{itemize}
+\item Quanto vale b?
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Arrays}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+int main(){
+ int a[5];
+ a[0] = 0;
+ a[4] = -3;
+}
+\end{lstlisting}
+\begin{itemize}
+\item Vetor com alocação estática;
+\item O vetor inicia no endereço 7 e usa 5 variáveis inteiras;
+\end{itemize}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}| }
+\hline
+& & & & \\ \hline
+& \cellcolor{Mahogany}0 &\cellcolor{Mahogany} &\cellcolor{Mahogany} & \cellcolor{Mahogany}\\ \hline
+\cellcolor{Mahogany} -3 & & & & \\ \hline
+& & & & \\ \hline
+& & & & \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}[fragile]{Arrays}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+int main(){
+ int a = 5;
+ int * b = new int[a];
+}
+\end{lstlisting}
+\begin{itemize}
+\item Vetor com alocação dinâmica;
+\item O vetor inicia no endereço 7 e usa a variáveis inteiras;
+\end{itemize}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}| }
+\hline
+& & \cellcolor{OliveGreen}5 & & \\ \hline
+& &\cellcolor{Mahogany} &\cellcolor{Mahogany} & \cellcolor{Mahogany}\\ \hline
+\cellcolor{Mahogany} & \cellcolor{Mahogany} & & & \\ \hline
+& & & & \\ \hline
+& & & & \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}[fragile]{Iterando Arrays}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+int main(){
+ int a = 5;
+ int * b = new int[a];
+ int * it = &b[0];
+ (*it++) = 8; 
+}
+\end{lstlisting}
+\begin{itemize}
+\item Quais operações são executadas na última linha?\pause
+\item {\color{red}(*it++) = 8 atribui o valor 8 a posição atual do iterador e incrementa o iterador, fazendo-o apontar para a próxima posição;}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Statements}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item If-Then-Else:
+\begin{lstlisting}
+if( expressao booleana ){
+ //se a expressao e verdadeira executa este bloco
+} else{
+ //se a expressao e falsa executa este bloco
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Statements}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item While:
+\begin{lstlisting}
+while( expressao booleana ){
+ //enquanto a expressao for verdadeira executa este bloco
+}
+\end{lstlisting}
+\item Do-While:
+\begin{lstlisting}
+do{
+ // executa este bloco enquanto a expressao for verdadeira
+}while( expressao booleana );
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Statements}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item For:
+\begin{lstlisting}
+for( inicializacao de variaveis ; expressao ; operacao executada a cada loop ) {
+	//Para cada vez que a expressao for verdadeira, executa esse bloco. Se a expressao      for falsa, sai do bloco.
+}
+\end{lstlisting}
+\item Em algumas versões antigas do standard tem que instanciar a variavel antes do loop.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Coleções}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Enum:
+\begin{lstlisting}
+enum Paises{
+ Argentina,
+ Brasil,
+ China,
+ Estados Unidos,
+ Inglaterra
+}
+\end{lstlisting}
+\begin{lstlisting}
+enum Paises{
+ Argentina=9,
+ Brasil=6,
+ China=5,
+ Estados Unidos=13,
+ Inglaterra=10
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Switch / Case}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Seleção Switch-case:
+\begin{lstlisting}
+int a;
+switch (a){
+ case:1
+  //se a vale 1, executa este bloco
+  break;
+ case:2
+  //se a vale 2, executa este bloco
+  break;
+ default:
+  //se a vale qualquer outro inteiro, executa este bloco
+}
+\end{lstlisting}
 \end{itemize}
 \end{frame}
 
