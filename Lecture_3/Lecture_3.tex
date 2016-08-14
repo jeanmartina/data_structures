@@ -1,0 +1,1503 @@
+\documentclass[12pt,table,xcolor={dvipsnames}]{beamer}
+\usetheme{Pittsburgh}
+\usecolortheme{seagull}
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Pilhas e Filas Utilizando Vetores}
+\title{Estruturas de Dados}
+%\setbeamercovered{transparent} 
+\setbeamertemplate{navigation symbols}{} 
+%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}} 
+\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim} 
+\date{2016.2} 
+\subject{} 
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_UFSC.png}}
+\begin{document}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+\titlepage
+\includegraphics[scale=0.3]{../reusable_images/brasao_INE.png}
+\end{frame}
+}
+
+\begin{frame}{Definição de Estruturas de Dados}
+\begin{block}{Definição}
+Estruturas de Dados é a disciplina que estuda as técnicas computacionais para a organização e manipulação eficiente de quaisquer quantidades de informação.
+\end{block}
+\end{frame}
+
+\begin{frame}{Motivação de Estruturas de Dados}
+\begin{itemize}
+\item Ao estudar estruturas de dados teremos sempre este par:
+\begin{itemize}
+\item Um conjunto estruturado de informações usualmente uma classe de objetos ou um tipo de dados;
+\item Um conjunto definido de operações sobre estes dados usualmente um conjunto de métodos ou funções.
+\end{itemize}
+\item Em um projeto de software sempre vamos nos preocupar de qual forma estão organizados os dados - qual a sua estrutura, e quais procedimentos que atuam sobre estes dados - que operações podem ser realizadas sobre eles.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+20  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+55 \\ \hline
+20  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+4 \\ \hline
+55 \\ \hline
+20  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+ \\ \hline
+ \\ \hline
+12 \\ \hline
+4 \\ \hline
+55 \\ \hline
+20  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+ \\ \hline
+89 \\ \hline
+12 \\ \hline
+4 \\ \hline
+55 \\ \hline
+20  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+24 \\ \hline
+89 \\ \hline
+12 \\ \hline
+4 \\ \hline
+55 \\ \hline
+20  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow}  & \multicolumn{1}{|p{.5cm}|} {int} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item {\color{red} Pilha Vazia!}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow}  & \multicolumn{1}{|p{.5cm}|} {-1} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {0} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {1} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {2} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {3} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item {\color{red} Pilha Cheia!}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Pilha}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos de um vetor para armazenar as informações;
+\item Necessitamos de um indicador da posição atual do topo da pilha;
+\end{itemize}
+\begin{lstlisting}
+constantes MAXPILHA = 100;
+
+classe Pilha {
+ T m_dados[MAXPILHA]; // Vetor Estatico
+ inteiro topo;        
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Pilha}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos de um vetor para armazenar as informações;
+\item Necessitamos de um indicador da posição atual do topo da pilha;
+\end{itemize}
+\begin{lstlisting}
+constantes MAXPILHA = 100;
+
+classe Pilha {
+ T* _dados; // _dados = new T[MAXPILHA];
+ inteiro _topo;
+ inteiro _tam = MAXPILHA;        
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Pilha}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Funcional:
+\begin{itemize}
+\item Temos que colocar e retirar dados da pilha;
+\item Temos que testar se a pilha está vazia ou cheia;
+\item Temos que inicializar a pilha.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Pilha}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Inicializar ou limpar:
+\begin{itemize}
+\item Pilha();
+\item Pilha(int tam);
+\item limpaPilha();
+\end{itemize}
+\item Testar se a pilha está vazia ou cheia:
+\begin{itemize}
+\item bool pilhaCheia();
+\item bool pilhaVazia();
+\end{itemize}
+\item Colocar e retirar dados da pilha:
+\begin{itemize}
+\item empilha(T dado);
+\item T desempilha();
+\item T topo();
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{Pilha()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+Pilha()
+inicio
+  _dados = new T[_tam];
+  _topo <- -1;
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{Pilha(int tam)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+Pilha(int tam)
+inicio
+  _tam = tam;
+  _dados = new T[tam];
+  topo <- -1;
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{limpaPilha()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+void limpaPilha()
+inicio
+  topo <- -1;
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{pilhaCheia()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+bool pilhaCheia()
+inicio
+ SE (_topo = _tam - 1) ENTAO
+  RETORNE(Verdadeiro);
+ SENAO
+  RETORNE(Falso);
+fim
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{pilhaVazia()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+bool pilhaVazia()
+inicio
+SE (_topo = -1) ENTAO
+ RETORNE(Verdadeiro)
+SENAO
+ RETORNE(Falso);
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{empilha(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+void empilha(T dado)
+inicio
+ SE (pilhaCheia) ENTAO
+  JogueExcecao(ERROPILHACHEIA);
+ SENAO
+  _topo <- _topo + 1
+  _dados[_topo] <- dado;
+ FIM SE
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T desempilha()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+T desempilha()
+inicio
+ SE (pilhaVazia) ENTAO
+  JogueExcecao(ERROPILHAVAZIA);
+ SENAO
+  _topo <- _topo - 1;
+  RETORNE(_dados[_topo+1]);
+ FIM SE
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T topo()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+T topo()
+inicio
+ SE (pilhaVazia) ENTAO
+  JogueExcecao(ERROPILHAVAZIA);
+ SENAO
+  RETORNE(_dados[_topo]);
+ FIM SE
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Trabalho Pilha de Vetor}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Implemente uma classe Pilha todas as operações vistas;
+\item Implemente a pilha usando Templates;
+\item Implemente a pilha com um numero de elementos variável definido na instanciação;
+\item Use as melhores práticas de orientação a objetos;
+\item Documente todas as classes, métodos e atributos;
+\item Aplique os testes unitários disponíveis no moodle da disciplina para validar sua estrutura de dados;
+\item Entregue até a data definida no moodle.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileirament, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileirament, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+ & & & & &\\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileirament, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+ &  &  &  &  & 20 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileirament, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+ &  &  &  & 55 & 20 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileirament, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+ &  &  & 4 & 55 & 20 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileirament, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+ &  & 12 & 4 & 55 & 20 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileirament, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+ & 89 & 12 & 4 & 55 & 20 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileirament, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+24 & 89 & 12 & 4 & 55 & 20 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileirament, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+& 24 & 89 & 12 & 4 & 55 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileirament, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+& & 24 & 89 & 12 & 4  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileirament, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+& & 24 & 89 & 12 & 4  \\ \hline
+\end{tabular}
+}
+\end{center}
+\begin{itemize}
+\item Duas operaćões:
+\begin{itemize}
+\item {\color{red}Incluir no Fim};
+\item {\color{red}Retirar do Inicio};
+\end{itemize}
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{itemize}
+\item É importante para gerência de dados/processos por ordem cronológica:
+\begin{itemize}
+\item Fila de impressão em uma impressora de rede;
+\item Fila de pedidos de uma expedição ou tele-entrega;
+\end{itemize}
+\item É importante para simulação de processos seqüenciais:
+\begin{itemize}
+\item chão de fábrica: fila de camisetas a serem estampadas;
+\item comércio: simulação de fluxo de um caixa de supermercado;
+\item tráfego: simulação de um cruzamento com um semáforo.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Filas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item Incluímos sempre no fim.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow}  & \multicolumn{1}{|p{.5cm}|} {int} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Filas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item Incluímos sempre no fim.
+\item {\color{red}Fila Vazia!}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow}  & \multicolumn{1}{|p{.5cm}|} {-1} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Filas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item Incluímos sempre no fim.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {0} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Filas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item Incluímos sempre no fim.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {1} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Filas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item Incluímos sempre no fim.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {2} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Filas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item Incluímos sempre no fim.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {3} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Filas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item Incluímos sempre no fim.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Filas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item Incluímos sempre no fim.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Filas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item Incluímos sempre no fim.
+\item {\color{red}Fila Cheia!}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Fila}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos de um vetor para armazenar as informações;
+\item Necessitamos de um indicador da posição atual do fim da fila;
+\end{itemize}
+\begin{lstlisting}
+constantes MAXFILA = 100;
+
+classe Pilha {
+ T* _dados; // _dados = new T[MAXFILA];
+ inteiro _fim;
+ inteiro _tam = MAXFILA;        
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Fila}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Funcional:
+\begin{itemize}
+\item Temos que colocar e retirar dados da fila;
+\item Temos que testar se a fila está vazia ou cheia;
+\item Temos que inicializar a fila.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Fila}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Inicializar ou limpar:
+\begin{itemize}
+\item Fila();
+\item Fila(int tam);
+\item limpaFila();
+\end{itemize}
+\item Testar se a fila está vazia ou cheia:
+\begin{itemize}
+\item bool filaCheia();
+\item bool filaVazia();
+\end{itemize}
+\item Colocar e retirar dados da pilha:
+\begin{itemize}
+\item insere(T dado);
+\item T retira();
+\item T ultimo();
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o fim da fila (último);
+\item Salvamos o primeiro elemento em variável auxiliar;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o fim da fila (último);
+\item Salvamos o primeiro elemento em variável auxiliar;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+\cellcolor{Mahogany} {T} \\\hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o fim da fila (último);
+\item Salvamos o primeiro elemento em variável auxiliar;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow}  & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+\cellcolor{Mahogany} {T} \\\hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o fim da fila (último);
+\item Salvamos o primeiro elemento em variável auxiliar;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow}  & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+\cellcolor{Mahogany} {20} \\\hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o fim da fila (último);
+\item Salvamos o primeiro elemento em variável auxiliar;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 55 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+\cellcolor{Mahogany} {20} \\\hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o fim da fila (último);
+\item Salvamos o primeiro elemento em variável auxiliar;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 4 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 55 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+\cellcolor{Mahogany} {20} \\\hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o fim da fila (último);
+\item Salvamos o primeiro elemento em variável auxiliar;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 4 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 55 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+\cellcolor{Mahogany} {20} \\\hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o fim da fila (último);
+\item Salvamos o primeiro elemento em variável auxiliar;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  89& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 4 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 55 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+\cellcolor{Mahogany} {20} \\\hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o fim da fila (último);
+\item Salvamos o primeiro elemento em variável auxiliar;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  24& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  89& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 4 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 55 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+\cellcolor{Mahogany} {20} \\\hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Trabalho Fila de Vetor}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Implemente uma classe Fila todas as operações vistas;
+\item Implemente a fila usando Templates;
+\item Implemente a fila com um numero de elementos variável definido na instanciação;
+\item Use as melhores práticas de orientação a objetos;
+\item Documente todas as classes, métodos e atributos;
+\item Aplique os testes unitários disponíveis no moodle da disciplina para validar sua estrutura de dados;
+\item Entregue até a data definida no moodle.
+\end{itemize}
+\end{frame}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+
+{\LARGE Perguntas????}
+
+\end{frame}
+}
+
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm} 
+\includegraphics[scale=0.95]{../reusable_images/by.png}
+
+\vspace{1cm}
+Este trabalho está licenciado sob uma Licença Creative Commons Atribuição 4.0 Internacional. Para ver uma cópia desta licença, visite http://creativecommons.org/licenses/by/4.0/.
+
+\end{frame}
+}
+\end{document}
