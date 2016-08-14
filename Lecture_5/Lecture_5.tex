@@ -1,0 +1,1658 @@
+\documentclass[12pt,table,xcolor={dvipsnames}]{beamer}
+\usetheme{Pittsburgh}
+\usecolortheme{seagull}
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{lstlinebgrd}
+\usepackage{graphicx}
+\author{Listas Utilizando Vetores}
+\title{Estruturas de Dados}
+%\setbeamercovered{transparent} 
+\setbeamertemplate{navigation symbols}{} 
+%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}} 
+\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim} 
+\date{2016.2} 
+\subject{} 
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_UFSC.png}}
+\begin{document}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+\titlepage
+\includegraphics[scale=0.3]{../reusable_images/brasao_INE.png}
+\end{frame}
+}
+
+\begin{frame}{Conceito de Listas}
+\begin{block}{Lista}
+Uma Lista é um conjunto de dados dispostos e/ou acessáveis em uma sequência determinada.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Definições de Lista}
+\begin{itemize}
+\item Lista é um conjunto de dados que pode possuir uma ordem intrínseca (Lista Ordenada) ou não;
+\item Este conjunto de dados pode ocupar espaços de memória fisicamente consecutivos, espelhando a sua ordem, ou não;
+\item Se os dados estiverem dispersos fisicamente, para que este conjunto seja uma lista, ele deve possuir operações e informações adicionais que permitam que seja tratado como tal (Lista Encadeada).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Definições de Lista}
+\begin{block}{Lista}
+A Lista é uma estrutura de dados cujo funcionamento é inspirado no de uma lista "natural".
+\end{block}
+\begin{itemize}
+\item Uma lista pode ser ordenada ou não:
+\item Quando for ordenada, pode o ser por alguma característica intrínseca dos dados (ex: ordem alfabética);
+\item Ela pode também refletir a ordem cronológica (ordem de inserção) dos dados.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Listas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa lista;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual último da lista.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow}  & \multicolumn{1}{|p{.5cm}|} {int} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Listas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa lista;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual último da lista.
+\item {\color{red} Lista Vazia!}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow}  & \multicolumn{1}{|p{.5cm}|} {-1} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Listas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa lista;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual último da lista.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {0} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Listas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa lista;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual último da lista.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {1} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Listas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa lista;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual último da lista.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {2} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Listas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa lista;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual último da lista.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {3} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Listas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa lista;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual último da lista.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Listas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa lista;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual último da lista.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Listas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa lista;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual último da lista.
+\item {\color{red} Lista Cheia!}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Lista de Vetor}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos de um vetor para armazenar as informações;
+\item Necessitamos de um indicador da posição atual do ultimo elemento da lista;
+\end{itemize}
+\begin{lstlisting}
+constantes MAXLISTA = 100;
+
+classe Lista {
+ T _dados[MAXLISTA]; // Vetor Estatico
+ inteiro _ultimo;        
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Lista de Vetor}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos de um vetor para armazenar as informações;
+\item Necessitamos de um indicador da posição atual do ultimo elemento da lista;
+\end{itemize}
+\begin{lstlisting}
+constantes MAXLISTA = 100;
+
+classe Lista {
+ T* _dados; // _dados = new T[MAXLISTA];
+ inteiro _ultimo;
+ inteiro _tam = MAXLISTA;        
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Lista de Vetor}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Funcional:
+\begin{itemize}
+\item Temos que colocar e retirar dados da lista;
+\item Temos que testar se a lista está vazia ou cheia (dentre outros testes);
+\item Temos que inicializar a lista e garantir a ordem de seus elementos.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Lista de Vetor}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Inicializar ou limpar:
+\begin{itemize}
+\item Lista();
+\item Lista(int tam);
+\item limpaLista();
+\item ~Lista();
+\end{itemize}
+\item Testar se a lista está vazia ou cheia e outros testes:
+\begin{itemize}
+\item bool pilhaCheia();
+\item bool pilhaVazia();
+\item int posicao(dado)
+\item bool contem(dado)
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Lista de Vetor}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Colocar e retirar dados da lista:
+\begin{itemize}
+\item adiciona(T dado);
+\item adicionaNoInicio(T dado);
+\item adicionaNaPosicao(T dado, int posicao);
+\item adicionaEmOrdem(T dado);
+\item T retira();
+\item T retiraDoInicio();
+\item T retiraDaPosicao(int posicao);
+\item T retiraEspecifico(dado);
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{Lista()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+Lista()
+inicio
+  _dados = new T[_tam];
+  _ultimo <- -1;
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{Lista(int tam)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+Lista(int tam)
+inicio
+  _tam = tam;
+  _dados = new T[tam];
+  ultimo <- -1;
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{limpaLista()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+void limpaLista()
+inicio
+  ultimo <- -1;
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{~Lista()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+void ~Lista()
+inicio
+  delete _dados;
+fim;
+\end{lstlisting}
+\begin{block}{Observação:}
+Este método é desnecessário. Ele só está aqui por completude da interface. Mais tarde veremos que, utilizando alocação dinâmica de memória, possuir um destrutor para  Lista é muito importante. 
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]{Método \textit{listaCheia()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+bool listaCheia()
+inicio
+ SE (_ultimo = _tam - 1) ENTAO
+  RETORNE(Verdadeiro);
+ SENAO
+  RETORNE(Falso);
+fim
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{listaVazia()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+bool listaVazia()
+inicio
+SE (_ultimo = -1) ENTAO
+ RETORNE(Verdadeiro)
+SENAO
+ RETORNE(Falso);
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adiciona(T dado)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço;
+\item Incrementamos o último;
+\item Adicionamos o novo dado na posićão último.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {3} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]{Método \textit{adiciona(T dado)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço;
+\item Incrementamos o último;
+\item Adicionamos o novo dado na posićão último.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]{Método \textit{adiciona(T dado)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço;
+\item Incrementamos o último;
+\item Adicionamos o novo dado na posićão último.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow} 89 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adiciona(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+adiciona(T dado)
+inicio
+  SE (listaCheia) ENTAO
+   THROW(ERROLISTACHEIA)
+  SENAO
+   _ultimo <- _ultimo + 1;
+   _dados[_ultimo] <- dado;
+  FIM SE
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o último;
+\item Devolvemos o último elemento.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow} 89 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o último;
+\item Devolvemos o último elemento.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow} 89 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {3} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o último;
+\item Devolvemos o último elemento.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {3} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+ \cellcolor{Mahogany} {89} \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+T retira()
+inicio
+ SE (listaVazia) ENTAO
+  THROW(ERROLISTAVAZIA)
+ SENAO
+  _ultimo <- _ultimo - 1;
+  RETORNE(_dados[_ultimo + 1]);
+ FIM SE
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço;
+\item Incrementamos o último;
+\item Empurramos tudo para trás;
+\item Adicionamos o novo dado na primeira posição.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow} 89 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço;
+\item Incrementamos o último;
+\item Empurramos tudo para trás;
+\item Adicionamos o novo dado na primeira posição.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow} 89 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço;
+\item Incrementamos o último;
+\item Empurramos tudo para trás;
+\item Adicionamos o novo dado na primeira posição.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço;
+\item Incrementamos o último;
+\item Empurramos tudo para trás;
+\item Adicionamos o novo dado na primeira posição.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço;
+\item Incrementamos o último;
+\item Empurramos tudo para trás;
+\item Adicionamos o novo dado na primeira posição.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  4 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço;
+\item Incrementamos o último;
+\item Empurramos tudo para trás;
+\item Adicionamos o novo dado na primeira posição.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  4 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  55 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço;
+\item Incrementamos o último;
+\item Empurramos tudo para trás;
+\item Adicionamos o novo dado na primeira posição.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  4 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  55 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 20 & &\\ \cline{1-2}
+\cellcolor{GreenYellow}  & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço;
+\item Incrementamos o último;
+\item Empurramos tudo para trás;
+\item Adicionamos o novo dado na primeira posição.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  4 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  55 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 20 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 42 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+adicionaNoInicio(T dado)
+ int posicao; //Var auxiliar para "caminhar"
+ inicio
+  SE (listaCheia) ENTAO
+   THROW(ERROLISTACHEIA)
+  SENAO
+   _ultimo <- _ultimo + 1;
+   posicao <- _ultimo;
+   ENQUANTO (posicao > 0) FACA
+    //Empurrar tudo para tras
+    _dados[posicao] <- _dados[posicao - 1];
+    posicao <- posicao - 1;
+   FIM ENQUANTO
+   _dados[0] <- dado;
+  FIM SE
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+adicionaNoInicio(T dado)
+ int posicao; //Var auxiliar para "caminhar"
+ inicio
+   (*@  \textcolor{red}{SE (listaCheia) ENTAO}  @*)
+    (*@  \textcolor{red}{THROW(ERROLISTACHEIA)}  @*)
+   (*@  \textcolor{red}{SENAO}  @*)
+   _ultimo <- _ultimo + 1;
+   posicao <- _ultimo;
+   ENQUANTO (posicao > 0) FACA
+    //Empurrar tudo para tras
+    _dados[posicao] <- _dados[posicao - 1];
+    posicao <- posicao - 1;
+   FIM ENQUANTO
+   _dados[0] <- dado;
+  FIM SE
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+adicionaNoInicio(T dado)
+ int posicao; //Var auxiliar para "caminhar"
+ inicio
+   SE (listaCheia) ENTAO)
+    THROW(ERROLISTACHEIA)
+   SENAO
+   (*@  \textcolor{red}{\_ultimo <- \_ultimo + 1;}  @*)
+   (*@  \textcolor{red}{posicao <- \_ultimo;}  @*)
+   (*@  \textcolor{red}{ENQUANTO (posicao > 0) FACA}  @*)
+    (*@  \textcolor{red}{//Empurrar tudo para tras}  @*)
+    (*@  \textcolor{red}{\_dados[posicao] <- \_dados[posicao - 1];}  @*)
+    (*@  \textcolor{red}{posicao <- posicao - 1;}  @*)
+   (*@  \textcolor{red}{FIM ENQUANTO}  @*)
+   _dados[0] <- dado;
+  FIM SE
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+adicionaNoInicio(T dado)
+ int posicao; //Var auxiliar para "caminhar"
+ inicio
+   SE (listaCheia) ENTAO
+    THROW(ERROLISTACHEIA)
+   SENAO
+   _ultimo <- _ultimo + 1;
+   posicao <- _ultimo;
+   ENQUANTO (posicao > 0) FACA
+    //Empurrar tudo para tras
+    _dados[posicao] <- _dados[posicao - 1];
+    posicao <- posicao - 1;
+   FIM ENQUANTO
+   (*@  \textcolor{red}{\_dados[0] <- dado;}  @*)
+  FIM SE
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o último;
+\item Salvamos o primeiro elemento;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  4 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  55 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 20 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 42 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o último;
+\item Salvamos o primeiro elemento;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  4 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  55 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 20 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 42 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o último;
+\item Salvamos o primeiro elemento;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  4 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  55 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 20 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 42 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+ \cellcolor{Mahogany} {42} \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o último;
+\item Salvamos o primeiro elemento;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  4 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  55 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 20 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+ \cellcolor{Mahogany} {42} \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o último;
+\item Salvamos o primeiro elemento;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  4 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  55 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+ \cellcolor{Mahogany} {42} \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o último;
+\item Salvamos o primeiro elemento;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  4 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+ \cellcolor{Mahogany} {42} \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o último;
+\item Salvamos o primeiro elemento;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+ \cellcolor{Mahogany} {42} \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o último;
+\item Salvamos o primeiro elemento;
+\item Empurramos tudo para a frente.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+ \cellcolor{Mahogany} {42} \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;
+\item Decrementamos o último;
+\item Salvamos o primeiro elemento;
+\item Empurramos tudo para a frente.
+\item{\color{red} Não perdemos tempo apagando o segundo "89", pois o \_ultimo determina que a lista acaba antes dele!}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\begin{tabular}{| p{.5cm} | }
+\hline
+ \cellcolor{Mahogany} {42} \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+T retiraDoInicio()
+ int posicao; T valor;
+inicio
+ SE (listaVazia) ENTAO
+  THROW(ERROLISTAVAZIA)
+ SENAO
+  _ultimo <- _ultimo - 1;
+  valor <- _dados[0];
+  posicao <- 0;
+  ENQUANTO (posicao <= _ultimo) FACA 
+   //Empurrar tudo para a frente
+   _dados[posicao] <- _dados[posicao + 1];
+   posicao <- posicao + 1;
+  FIM ENQUANTO
+  RETORNE(valor);
+ FIM SE
+fim;
+(*@  \textcolor{red}{ }  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+T retiraDoInicio()
+ int posicao; T valor;
+inicio
+ (*@  \textcolor{red}{SE (listaVazia) ENTAO}  @*)
+  (*@  \textcolor{red}{THROW(ERROLISTAVAZIA)}  @*)
+ (*@  \textcolor{red}{SENAO}  @*)
+  _ultimo <- _ultimo - 1;
+  valor <- _dados[0];
+  posicao <- 0;
+  ENQUANTO (posicao <= _ultimo) FACA 
+   //Empurrar tudo para a frente
+   _dados[posicao] <- _dados[posicao + 1];
+   posicao <- posicao + 1;
+  FIM ENQUANTO
+  RETORNE(valor);
+ FIM SE
+fim;
+(*@  \textcolor{red}{ }  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+T retiraDoInicio()
+ int posicao; T valor;
+inicio
+ SE (listaVazia) ENTAO
+  THROW(ERROLISTAVAZIA)
+ SENAO
+  _ultimo <- _ultimo - 1;
+  (*@  \textcolor{red}{valor <- \_dados[0];}  @*)
+  posicao <- 0;
+  ENQUANTO (posicao <= _ultimo) FACA 
+   //Empurrar tudo para a frente
+   _dados[posicao] <- _dados[_posicao + 1];
+   posicao <- posicao + 1;
+  FIM ENQUANTO
+  RETORNE(valor);
+ FIM SE
+fim;
+ 
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+T retiraDoInicio()
+ int posicao; T valor;
+inicio
+ SE (listaVazia) ENTAO
+  THROW(ERROLISTAVAZIA)
+ SENAO
+  _ultimo <- _ultimo - 1;
+  valor <- _dados[0];
+  (*@  \textcolor{red}{posicao <- 0;}  @*)
+  (*@  \textcolor{red}{ENQUANTO (posicao <= \_ultimo) FACA }  @*)
+   (*@  \textcolor{red}{//Empurrar tudo para a frente}  @*)
+   (*@  \textcolor{red}{\_dados[posicao] <- \_dados[posicao + 1];}  @*)
+   (*@  \textcolor{red}{posicao <- posicao + 1;}  @*)
+  (*@  \textcolor{red}{FIM ENQUANTO}  @*)
+  RETORNE(valor);
+ FIM SE
+fim;
+ 
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+T retiraDoInicio()
+ int posicao; T valor;
+inicio
+ SE (listaVazia) ENTAO
+  THROW(ERROLISTAVAZIA)
+ SENAO
+  _ultimo <- _ultimo - 1;
+  valor <- _dados[0];
+  posicao <- 0;
+  ENQUANTO (posicao <= _ultimo) FACA 
+   //Empurrar tudo para a frente
+   _dados[_posicao] <- _dados[_posicao + 1];
+   _posicao <- posicao + 1;
+  FIM ENQUANTO
+  (*@  \textcolor{red}{RETORNE(valor);}  @*)
+ FIM SE
+fim;
+ 
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço e se a posição existe;
+\item Incrementamos o último;
+\item Empurramos tudo para trás a partir da posição;
+\item Adicionamos o novo dado na posição informada.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço e se a posição existe;
+\item Incrementamos o último;
+\item Empurramos tudo para trás a partir da posição;
+\item Adicionamos o novo dado na posição informada.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço e se a posição existe;
+\item Incrementamos o último;
+\item Empurramos tudo para trás a partir da posição;
+\item Adicionamos o novo dado na posição informada.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço e se a posição existe;
+\item Incrementamos o último;
+\item Empurramos tudo para trás a partir da posição;
+\item Adicionamos o novo dado na posição informada.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há espaço e se a posição existe;
+\item Incrementamos o último;
+\item Empurramos tudo para trás a partir da posição;
+\item Adicionamos o novo dado na posição informada.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 89 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  12 & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  42 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+adicionaNaPosicao(T dado, int posicao)
+ int atual;
+inicio
+ SE (listaCheia) ENTAO
+  THROW(ERROLISTACHEIA)
+ SENAO
+  SE (posicao > _ultimo+1 OU posicao < 0) ENTAO
+   THROW(ERROPOSICAO);
+  FIM SE
+  _ultimo <- _ultimo+1; atual <- _ultimo;
+  ENQUANTO (atual > posicao) FACA
+   _dados[atual] <- _dados[atual - 1];
+   atual <- atual - 1;
+  FIM ENQUANTO
+  _dados[posicao] <- dado;
+ FIM SE
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+adicionaNaPosicao(T dado, int posicao)
+ int atual;
+inicio
+ SE (listaCheia) ENTAO
+  THROW(ERROLISTACHEIA)
+ SENAO
+  (*@  \textcolor{red}{SE (posicao > \_ultimo+1 OU posicao < 0) ENTAO}  @*)
+   (*@  \textcolor{red}{THROW(ERROPOSICAO);}  @*)
+  (*@  \textcolor{red}{FIM SE}  @*)
+  _ultimo <- _ultimo+1; atual <- _ultimo;
+  ENQUANTO (atual > posicao) FACA
+   _dados[atual] <- _dados[atual - 1];
+   atual <- atual - 1;
+  FIM ENQUANTO
+  _dados[posicao] <- dado;
+ FIM SE
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+adicionaNaPosicao(T dado, int posicao)
+ int atual;
+inicio
+ SE (listaCheia) ENTAO
+  THROW(ERROLISTACHEIA)
+ SENAO
+  SE (posicao > _ultimo+1 OU posicao < 0) ENTAO
+   THROW(ERROPOSICAO);
+  FIM SE
+  _ultimo <- _ultimo+1; atual <- _ultimo;
+  ENQUANTO (atual > posicao) FACA
+   _dados[atual] <- _dados[atual - 1];
+   atual <- atual - 1;
+  FIM ENQUANTO
+  (*@  \textcolor{red}{\_dados[posicao] <- dado;}  @*)
+ FIM SE
+fim;
+
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Revisitando Métodos}
+\begin{itemize}
+\item adicionaNoInicio(dado) == adicionaNaPosicao(dado,0);
+\item adiciona(dado) == adicionaNaPosicao(dado,ultimo+1);
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}[fragile]{Trabalho Lista de Vetor}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Implemente uma classe Lista todas as operações vistas;
+\item Implemente a lista usando Templates;
+\item Implemente a lista com um numero de elementos variável definido na instanciação;
+\item Use as melhores práticas de orientação a objetos;
+\item Documente todas as classes, métodos e atributos;
+\item Aplique os testes unitários disponíveis no moodle da disciplina para validar sua estrutura de dados;
+\item Entregue até a data definida no moodle.
+\end{itemize}
+\end{frame}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+
+{\LARGE Perguntas????}
+
+\end{frame}
+}
+
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm} 
+\includegraphics[scale=0.95]{../reusable_images/by.png}
+
+\vspace{1cm}
+Este trabalho está licenciado sob uma Licença Creative Commons Atribuição 4.0 Internacional. Para ver uma cópia desta licença, visite http://creativecommons.org/licenses/by/4.0/.
+
+\end{frame}
+}
+\end{document}
