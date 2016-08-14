@@ -1,0 +1,495 @@
+\documentclass[12pt,table,xcolor={dvipsnames}]{beamer}
+\usetheme{Pittsburgh}
+\usecolortheme{seagull}
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Programação C++}
+\title{Estruturas de Dados}
+%\setbeamercovered{transparent} 
+\setbeamertemplate{navigation symbols}{} 
+%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}} 
+\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim} 
+\date{2016.2} 
+\subject{} 
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_UFSC.png}}
+\begin{document}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+\titlepage
+\includegraphics[scale=0.3]{../reusable_images/brasao_INE.png}
+\end{frame}
+}
+
+\begin{frame}{Classes em C++}
+\begin{itemize}
+\item Declaração das classes é semelhante ao Java (Java é que copiou do C++);
+\item As melhores práticas são declarar no arquivo Header e implementar no Source;
+\item Isso tem por objetivo separar intrumentação do compilador de código
+objeto.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\textit{Pessoa.h}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+class Pessoa {
+ private:
+  // declaracao dos atributos privados
+ protected:
+  // declaracao dos metodos protegidos
+ public:
+  // declaracao dos metodos publicos
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\textit{Pessoa.cpp}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+#include "Pessoa.h"
+
+void Pessoa::metodo1() {
+// implementacao do metodo 1
+}
+
+int Pessoa::metodo2() {
+// implementacao do metodo 2
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Classes em C++}
+\begin{itemize}
+\item Estas são as melhores práticas;
+\item Nada impede de você implementar os métodos no Header;
+\item Templates vão exigir a implementação dentro do header pois o pré-processador do compilador que tem que criar as variações.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Construtores e Destrutores}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+// Pessoa.h
+class Pessoa {
+ private:
+  // declaracao dos atributos privados
+ protected:
+  // declaracao dos metodos protegidos
+ public:
+  Pessoa(); // construtor padrao
+  Pessoa(char n[], int i);//  com parametros
+  virtual ~Pessoa(); // destrutor
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Construtores e Destrutores}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+// Pessoa.cpp
+#include "Pessoa.h"
+
+Pessoa::Pessoa() {
+// implementacao 
+}
+
+int Pessoa::Pessoa(char* n, int i) {
+// implementacao
+}
+
+int Pessoa::~Pessoa() {
+// implementacao
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Construtores e Destrutores}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+Usando os contrutores e destrutores:
+\begin{lstlisting}
+Pessoa p; // construtor padrao e invocado
+Pessoa p("Fulano", 27);//outro construtor
+p.~Pessoa(); // destrutor
+Pessoa* p = new Pessoa(); //dinamico
+Pessoa* p = new Pessoa("Fulano", 27); //dinamico
+delete p; //dinamico
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Herança em C++}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+Class Empregado : public Pessoa {
+// herda atributos e metodos da superclasse igual em java
+}
+Class Empregado : protected Pessoa {
+// herda atributos e metodos da superclasse com visao so pra classe e para seus filhos
+}
+Class Empregado : private Pessoa {
+// herda atributos e metodos da superclasse com visao somente interna
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Métodos Virtuais}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+Class Empregado : public Pessoa {
+  private:
+   int _salario;
+   int _descontos;
+  public:
+   virtual int salarioLiquido() = 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Métodos Virtuais}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+Class Estudante : public Empregado {
+  private:
+  public:
+   virtual int salarioLiquido() {
+    return _salario;
+   };
+   virtual void adicionaBonus() {
+    _salario = _salario + 0;
+   }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Métodos Virtuais}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+Class Professor : public Estudante {
+  private:
+  public:
+   int salarioLiquido() {
+    return _salario * 0.725;
+   };
+   void adicionaBonus() {
+    _salario = _salario + 5000;
+   }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Classes Asbtratas e Interfaces}
+\begin{itemize}
+\item Classe abstrata tem pelo menos um método puramente virtual (sem implementação);
+\item Interface tem todos os métodos puramente virtuais;
+\item Em C++trudo se dá por herança múltipla;
+\item Isso causa problemas de ambiguidade como o Problema do Diamante;
+\item A Solução é fazer herança virtual:
+\begin{itemize}
+\item public virtual;
+\item protected virtual;
+\item private virtual.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Tratamento de Exceções}
+\begin{itemize}
+\item O tratamento de exceções permite capturar erros ocorridos durante a execução de um programa;
+\item Uma exceção é lançada com o comando \textit{throw()};
+\item O comando \textit{throw()} deve ser usado dentro de um bloco \textit{try\{...\}};
+\item O fluxo de execução é desviado para o bloco \textit{catch()}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Tratamento de Exceções}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+// exceptions
+#include <iostream>
+using namespace std;
+
+int main () {
+  try
+  {
+    throw 20;
+  }
+  catch (int e)
+  {
+    cout << "An exception occurred. Exception Nr. " << e << '\n';
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Exceções Padronizadas no C++}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+// using standard exceptions
+#include <iostream>
+#include <exception>
+using namespace std;
+
+class myexception: public exception {
+  virtual const char* what() const throw() {
+    return "My exception happened";
+  }
+} myex;
+
+int main () {
+  try {
+    throw myex;
+  } catch (exception& e) {
+    cout << e.what() << '\n';
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Templates}
+\begin{itemize}
+\item A utilização de templates nos permite criar funções e classes genéricas;
+\item As funções ou classes genéricas são baseadas em argumentos com tipo desconhecido;
+\item O tipo será definido quando forem usadas por entidades específicas.	
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Templates}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+template<typename T>
+class Lista {
+ private: 
+  Lista *proximo;
+  T *dado;
+ public:
+  T retornaDoInicio();
+};
+int main() {
+Lista<int> listaInteiro;
+Lista<char*> listaString;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Documentação com Doxygen}
+\begin{itemize}
+\item  Ele gerar  documentação de referência a partir de um conjunto de códigos documentados;
+\item  Tem suporte para gerar saída em RTF (Word), PostScript, PDF com links, HTML compactado e man pages do Linux.;
+\item A documentação é extraída diretamente dos códigos;
+\item Você pode também gerar automáticamente as relações entre os vários elementos, o que inclui gráficos de dependência, diagramas de herança e diagramas colaborativos;
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Documentação com Doxygen}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+//!  Uma classe de teste.
+/*!
+  Uma descricao mais elaborada da classe.
+*/
+class Teste {
+ public:
+  //! Uma enumeracao.
+  /*! Descricao mais detalhada da enumeracao. */
+  enum TEnum {
+               TVal1, /*!< Valor enumeravel TVal1. */
+               TVal2, /*!< Valor enumeravel TVal2. */
+               TVal3  /*!< Valor enumeravel TVal3. */
+             }
+   
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Documentação com Doxygen}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+         //! Ponteiro da enumeracao.
+         /*! Detalhes. */
+         *ptrEnum,
+         //! Variavel da enumeracao.
+         /*! Detalhes. */
+         varEnum;
+    //! Um construtor.
+    /*!
+      Descricao mais elaborada do construtor.
+    */
+    Teste();
+ 
+    //! Um destrutor.
+    /*!
+      Descricao mais elaborada do destrutor.
+    */
+   ~Teste();
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Documentação com Doxygen}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+  //! Um membro normal com dois argumentos e retornando um valor inteiro.
+  /*!
+    \param a um argumento inteiro.
+    \param s um ponteiro para char const.
+    \return Os resultados do teste
+    \sa Teste(), ~Teste(), meTesteTambem() and varPublica()
+  */
+  int meTeste(int a,const char *s);
+  //! Um membro puramente virtual.
+  /*!
+    \sa testMe()
+    \param c1 o primeiro argumento.
+    \param c2 o segundo argumento.
+  */
+ virtual void meTesteTambem(char c1,char c2)=0;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Documentação com Doxygen}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{green}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+    //! Uma variavel publica.
+    /*!
+      Detalhes.
+    */
+    int varPublica;
+ 
+    //! Uma variavel funcao.
+    /*!
+      Detalhes.
+    */
+    int (*handler)(int a,int b);
+};
+\end{lstlisting}
+\end{frame}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+
+{\LARGE Perguntas????}
+
+\end{frame}
+}
+
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm} 
+\includegraphics[scale=0.95]{../reusable_images/by.png}
+
+\vspace{1cm}
+Este trabalho está licenciado sob uma Licença Creative Commons Atribuição 4.0 Internacional. Para ver uma cópia desta licença, visite http://creativecommons.org/licenses/by/4.0/.
+
+\end{frame}
+}
+\end{document}
