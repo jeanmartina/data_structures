@@ -1,7 +1,8 @@
 \documentclass[12pt,table,xcolor={dvipsnames}]{beamer}
 \usetheme{Pittsburgh}
 \usecolortheme{seagull}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
 \usepackage[brazilian]{babel}
 \usepackage{amsmath}
 \usepackage{listings}
@@ -11,12 +12,12 @@
 \usepackage{graphicx}
 \author{Programação C++}
 \title{Estruturas de Dados}
-%\setbeamercovered{transparent} 
-\setbeamertemplate{navigation symbols}{} 
-%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}} 
-\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim} 
-\date{2016.2} 
-\subject{} 
+%\setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{}
+%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}}
+\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim}
+\date{2016.2}
+\subject{}
 \usebackgroundtemplate{\includegraphics[width=\paperwidth,
 height=\paperheight]{../reusable_images/fundo_UFSC.png}}
 \begin{document}
@@ -124,7 +125,7 @@ class Pessoa {
 #include "Pessoa.h"
 
 Pessoa::Pessoa() {
-// implementacao 
+// implementacao
 }
 
 int Pessoa::Pessoa(char* n, int i) {
@@ -326,7 +327,7 @@ int main () {
 \begin{itemize}
 \item A utilização de templates nos permite criar funções e classes genéricas;
 \item As funções ou classes genéricas são baseadas em argumentos com tipo desconhecido;
-\item O tipo será definido quando forem usadas por entidades específicas.	
+\item O tipo será definido quando forem usadas por entidades específicas.
 \end{itemize}
 \end{frame}
 
@@ -341,7 +342,7 @@ int main () {
 \begin{lstlisting}
 template<typename T>
 class Lista {
- private: 
+ private:
   Lista *proximo;
   T *dado;
  public:
@@ -385,7 +386,7 @@ class Teste {
                TVal2, /*!< Valor enumeravel TVal2. */
                TVal3  /*!< Valor enumeravel TVal3. */
              }
-   
+
 \end{lstlisting}
 \end{frame}
 
@@ -409,7 +410,7 @@ class Teste {
       Descricao mais elaborada do construtor.
     */
     Teste();
- 
+
     //! Um destrutor.
     /*!
       Descricao mais elaborada do destrutor.
@@ -459,7 +460,7 @@ class Teste {
       Detalhes.
     */
     int varPublica;
- 
+
     //! Uma variavel funcao.
     /*!
       Detalhes.
@@ -484,7 +485,7 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \usebackgroundtemplate{\includegraphics[width=\paperwidth,
 height=\paperheight]{../reusable_images/fundo_capa.png}}
 \begin{frame}
-\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm} 
+\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm}
 \includegraphics[scale=0.95]{../reusable_images/by.png}
 
 \vspace{1cm}

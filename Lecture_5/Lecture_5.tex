@@ -1,7 +1,8 @@
 \documentclass[12pt,table,xcolor={dvipsnames}]{beamer}
 \usetheme{Pittsburgh}
 \usecolortheme{seagull}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
 \usepackage[brazilian]{babel}
 \usepackage{amsmath}
 \usepackage{listings}
@@ -12,12 +13,12 @@
 \usepackage{graphicx}
 \author{Listas Utilizando Vetores}
 \title{Estruturas de Dados}
-%\setbeamercovered{transparent} 
-\setbeamertemplate{navigation symbols}{} 
-%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}} 
-\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim} 
-\date{2016.2} 
-\subject{} 
+%\setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{}
+%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}}
+\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim}
+\date{2016.2}
+\subject{}
 \usebackgroundtemplate{\includegraphics[width=\paperwidth,
 height=\paperheight]{../reusable_images/fundo_UFSC.png}}
 \begin{document}
@@ -285,7 +286,7 @@ constantes MAXLISTA = 100;
 
 classe Lista {
  T _dados[MAXLISTA]; // Vetor Estatico
- inteiro _ultimo;        
+ inteiro _ultimo;
 };
 \end{lstlisting}
 \end{itemize}
@@ -312,7 +313,7 @@ constantes MAXLISTA = 100;
 classe Lista {
  T* _dados; // _dados = new T[MAXLISTA];
  inteiro _ultimo;
- inteiro _tam = MAXLISTA;        
+ inteiro _tam = MAXLISTA;
 };
 \end{lstlisting}
 \end{itemize}
@@ -454,7 +455,7 @@ inicio
 fim;
 \end{lstlisting}
 \begin{block}{Observação:}
-Este método é desnecessário. Ele só está aqui por completude da interface. Mais tarde veremos que, utilizando alocação dinâmica de memória, possuir um destrutor para  Lista é muito importante. 
+Este método é desnecessário. Ele só está aqui por completude da interface. Mais tarde veremos que, utilizando alocação dinâmica de memória, possuir um destrutor para  Lista é muito importante.
 \end{block}
 \end{frame}
 
@@ -1255,7 +1256,7 @@ inicio
   _ultimo <- _ultimo - 1;
   valor <- _dados[0];
   posicao <- 0;
-  ENQUANTO (posicao <= _ultimo) FACA 
+  ENQUANTO (posicao <= _ultimo) FACA
    //Empurrar tudo para a frente
    _dados[posicao] <- _dados[posicao + 1];
    posicao <- posicao + 1;
@@ -1286,7 +1287,7 @@ inicio
   _ultimo <- _ultimo - 1;
   valor <- _dados[0];
   posicao <- 0;
-  ENQUANTO (posicao <= _ultimo) FACA 
+  ENQUANTO (posicao <= _ultimo) FACA
    //Empurrar tudo para a frente
    _dados[posicao] <- _dados[posicao + 1];
    posicao <- posicao + 1;
@@ -1317,7 +1318,7 @@ inicio
   _ultimo <- _ultimo - 1;
   (*@  \textcolor{red}{valor <- \_dados[0];}  @*)
   posicao <- 0;
-  ENQUANTO (posicao <= _ultimo) FACA 
+  ENQUANTO (posicao <= _ultimo) FACA
    //Empurrar tudo para a frente
    _dados[posicao] <- _dados[_posicao + 1];
    posicao <- posicao + 1;
@@ -1325,7 +1326,7 @@ inicio
   RETORNE(valor);
  FIM SE
 fim;
- 
+
 \end{lstlisting}
 \end{frame}
 
@@ -1356,7 +1357,7 @@ inicio
   RETORNE(valor);
  FIM SE
 fim;
- 
+
 \end{lstlisting}
 \end{frame}
 
@@ -1379,7 +1380,7 @@ inicio
   _ultimo <- _ultimo - 1;
   valor <- _dados[0];
   posicao <- 0;
-  ENQUANTO (posicao <= _ultimo) FACA 
+  ENQUANTO (posicao <= _ultimo) FACA
    //Empurrar tudo para a frente
    _dados[_posicao] <- _dados[_posicao + 1];
    _posicao <- posicao + 1;
@@ -1387,7 +1388,7 @@ inicio
   (*@  \textcolor{red}{RETORNE(valor);}  @*)
  FIM SE
 fim;
- 
+
 \end{lstlisting}
 \end{frame}
 
@@ -1647,7 +1648,7 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \usebackgroundtemplate{\includegraphics[width=\paperwidth,
 height=\paperheight]{../reusable_images/fundo_capa.png}}
 \begin{frame}
-\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm} 
+\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm}
 \includegraphics[scale=0.95]{../reusable_images/by.png}
 
 \vspace{1cm}

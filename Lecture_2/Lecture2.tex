@@ -1,7 +1,8 @@
 \documentclass[12pt,table,xcolor={dvipsnames}]{beamer}
 \usetheme{Pittsburgh}
 \usecolortheme{seagull}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
 \usepackage[brazilian]{babel}
 \usepackage{amsmath}
 \usepackage{listings}
@@ -10,12 +11,12 @@
 \usepackage{graphicx}
 \author{Introdução ao C++}
 \title{Estruturas de Dados}
-%\setbeamercovered{transparent} 
-\setbeamertemplate{navigation symbols}{} 
-%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}} 
-\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim} 
-\date{2016.2} 
-\subject{} 
+%\setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{}
+%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}}
+\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim}
+\date{2016.2}
+\subject{}
 \usebackgroundtemplate{\includegraphics[width=\paperwidth,
 height=\paperheight]{../reusable_images/fundo_UFSC.png}}
 \begin{document}
@@ -57,7 +58,7 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \item Em 1983 passou a ser chamada C++;
 \item Ao longo do tempo incorporou novas funcionalidades como:
 \begin{itemize}
-\item Herança múltipla; 
+\item Herança múltipla;
 \item Sobreescrita de operadores;
 \item Templates;
 \item Entre outras coisas que veremos ao longo do curso.
@@ -72,7 +73,7 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \item Existem vários comiladores da linguagem;
 \item É um linguagem padronizada internacionamelmente:
 \begin{itemize}
-\item Em 1998 foi definido um padrão ISO para a linguagem; 
+\item Em 1998 foi definido um padrão ISO para a linguagem;
 \item Revisado em 2003;
 \item Revisado em 2011;
 \item Revisado em 2014;
@@ -83,7 +84,7 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \begin{frame}{GCC/G++}
 \begin{itemize}
 \item GNU Compiler Collection;
-\item Compilador originalmente desenvolvido focando a linguagem C, chamava-se GNU C 
+\item Compilador originalmente desenvolvido focando a linguagem C, chamava-se GNU C
 Compiler;
 \item Ao longo do anos passou a contemplar outras linguagens, como C++;
 \end{itemize}
@@ -116,7 +117,7 @@ class MyClass {
   void foo();
   float bar;
 };
-#endif 
+#endif
 \end{lstlisting}
 \end{frame}
 
@@ -178,7 +179,7 @@ class MyClass {
 
 int main()
 {
-  //MyClass* a = new MyClass(); 
+  //MyClass* a = new MyClass();
   MyClass<int>* a = new MyClass<int>();
   a->foo();
   return 0;
@@ -195,8 +196,8 @@ int main()
           basicstyle=\ttfamily\footnotesize
           }
 \begin{lstlisting}
-$ g++ main.cpp -o hello_world -std=c++11 -Werror 
-$ ./hello_world 
+$ g++ main.cpp -o hello_world -std=c++11 -Werror
+$ ./hello_world
 $ Hello World!
 \end{lstlisting}
 \end{frame}
@@ -271,7 +272,7 @@ $ Hello World!
 \item Atribui um valor a um símbolo;
 \item Cada vez que o pré-processador encontra este símbolo no código ele substitui o símbolo por esse valor.
 \begin{lstlisting}
-#define max_iterations 1000	
+#define max_iterations 1000
 \end{lstlisting}
 \end{itemize}
 \end{frame}
@@ -329,7 +330,7 @@ int main() {
 \begin{itemize}
 \item So devemos usar quando o código é pequeno e existe um real conhecimento do fluxo das instruções;
 \item Desgraças podem acontecer e o código colado pelo pré-processador pode tomar um rumo inesperado;
-\item Como o código é "colado", não existe ônus de ter que colocar o endereço da instrução na pilha como em uma chamada de função; 
+\item Como o código é "colado", não existe ônus de ter que colocar o endereço da instrução na pilha como em uma chamada de função;
 \item Em uma próxima aula discutiremos isso ao ver funções inline.
 \end{itemize}
 \end{frame}
@@ -345,7 +346,7 @@ int main() {
 \begin{itemize}
 \item Estabelecem o domínio ao qual declarações (classes, structs, metaclasses) fazem parte;
 \item É utilizado para organizar o código em diferentes domínios, que dependendo da
-estrutura de diretórios do código fonte; 
+estrutura de diretórios do código fonte;
 \item Apresentam uma leve semelhança com a organização em pacotes do java;
 \item Também serve para eliminar ambigüidades.
 \end{itemize}
@@ -448,8 +449,8 @@ using namespace std;
 
 int main()
 {
-  std::MyClass* a; 
-  templates::MyClass<int>* b; 
+  std::MyClass* a;
+  templates::MyClass<int>* b;
 }
 \end{lstlisting}
 \begin{itemize}
@@ -475,8 +476,8 @@ typedef MyClass<int> MinhaClasseInteira;
 
 int main()
 {
-  MyClass* a; 
-  MinhaClasseInteira* b; 
+  MyClass* a;
+  MinhaClasseInteira* b;
 }
 \end{lstlisting}
 \begin{itemize}
@@ -657,9 +658,9 @@ using namespace std;
 
 int main(){
  int a = 5;
- int * b = &a; 
+ int * b = &a;
  cout<<"O valor de a "<<a<<" o endereco de a e "<<&a<<endl;
- cout<<"b contem o endereco "<<b<<" o conteudo do endereco de b e: "<<*b<<endl ; 
+ cout<<"b contem o endereco "<<b<<" o conteudo do endereco de b e: "<<*b<<endl ;
 }
 \end{lstlisting}
 \begin{itemize}
@@ -682,10 +683,10 @@ using namespace std;
 
 int main(){
  int a = 5;
- int * b = &a; 
+ int * b = &a;
  *b += a;
  a *= (*b);
- std::cout<<a<<std::endl; 
+ std::cout<<a<<std::endl;
 }
 \end{lstlisting}
 \begin{itemize}
@@ -809,7 +810,7 @@ int main(){
  int a = 5;
  int * b = new int[a];
  int * it = &b[0];
- (*it++) = 8; 
+ (*it++) = 8;
 }
 \end{lstlisting}
 \begin{itemize}
@@ -958,7 +959,7 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \usebackgroundtemplate{\includegraphics[width=\paperwidth,
 height=\paperheight]{../reusable_images/fundo_capa.png}}
 \begin{frame}
-\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm} 
+\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm}
 \includegraphics[scale=0.95]{../reusable_images/by.png}
 
 \vspace{1cm}

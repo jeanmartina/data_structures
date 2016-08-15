@@ -1,7 +1,8 @@
 \documentclass[12pt,table,xcolor={dvipsnames}]{beamer}
 \usetheme{Pittsburgh}
 \usecolortheme{seagull}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
 \usepackage[brazilian]{babel}
 \usepackage{amsmath}
 \usepackage{listings}
@@ -11,12 +12,12 @@
 \usepackage{graphicx}
 \author{Pilhas e Filas Utilizando Vetores}
 \title{Estruturas de Dados}
-%\setbeamercovered{transparent} 
-\setbeamertemplate{navigation symbols}{} 
-%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}} 
-\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim} 
-\date{2016.2} 
-\subject{} 
+%\setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{}
+%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}}
+\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim}
+\date{2016.2}
+\subject{}
 \usebackgroundtemplate{\includegraphics[width=\paperwidth,
 height=\paperheight]{../reusable_images/fundo_UFSC.png}}
 \begin{document}
@@ -476,7 +477,7 @@ constantes MAXPILHA = 100;
 classe Pilha {
  T* _dados; // _dados = new T[MAXPILHA];
  inteiro _topo;
- inteiro _tam = MAXPILHA;        
+ inteiro _tam = MAXPILHA;
 };
 \end{lstlisting}
 \end{itemize}
@@ -1155,7 +1156,7 @@ constantes MAXFILA = 100;
 classe Pilha {
  T* _dados; // _dados = new T[MAXFILA];
  inteiro _fim;
- inteiro _tam = MAXFILA;        
+ inteiro _tam = MAXFILA;
 };
 \end{lstlisting}
 \end{itemize}
@@ -1492,7 +1493,7 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \usebackgroundtemplate{\includegraphics[width=\paperwidth,
 height=\paperheight]{../reusable_images/fundo_capa.png}}
 \begin{frame}
-\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm} 
+\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm}
 \includegraphics[scale=0.95]{../reusable_images/by.png}
 
 \vspace{1cm}
