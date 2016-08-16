@@ -357,8 +357,8 @@ classe Lista {
 \end{itemize}
 \item Testar se a lista está vazia ou cheia e outros testes:
 \begin{itemize}
-\item bool pilhaCheia();
-\item bool pilhaVazia();
+\item bool listaCheia();
+\item bool listaVazia();
 \item int posicao(dado)
 \item bool contem(dado)
 \end{itemize}
@@ -504,7 +504,7 @@ fim;
 \begin{itemize}
 \item Testamos se há espaço;
 \item Incrementamos o último;
-\item Adicionamos o novo dado na posićão último.
+\item Adicionamos o novo dado na posição último.
 \end{itemize}
 \column{.5\textwidth}
 \begin{center}
@@ -528,7 +528,7 @@ fim;
 \begin{itemize}
 \item Testamos se há espaço;
 \item Incrementamos o último;
-\item Adicionamos o novo dado na posićão último.
+\item Adicionamos o novo dado na posição último.
 \end{itemize}
 \column{.5\textwidth}
 \begin{center}
@@ -552,7 +552,7 @@ fim;
 \begin{itemize}
 \item Testamos se há espaço;
 \item Incrementamos o último;
-\item Adicionamos o novo dado na posićão último.
+\item Adicionamos o novo dado na posição último.
 \end{itemize}
 \column{.5\textwidth}
 \begin{center}
@@ -1926,7 +1926,7 @@ fim;
 \item Necessitamos de uma função para comparar os dados (próximo slide);
 \item Testamos se há espaço;
 \item Procuramos pela posição onde inserir comparando dados;
-\item Chamamos adicionaNaPosição.
+\item Chamamos adicionaNaPosicao.
 \end{itemize}
 \column{.5\textwidth}
 \begin{center}
@@ -1955,7 +1955,7 @@ Inserir
 \item Necessitamos de uma função para comparar os dados (próximo slide);
 \item Testamos se há espaço;
 \item Procuramos pela posição onde inserir comparando dados;
-\item Chamamos adicionaNaPosição.
+\item Chamamos adicionaNaPosicao.
 \end{itemize}
 \column{.5\textwidth}
 \begin{center}
@@ -1984,7 +1984,7 @@ Inserir
 \item Necessitamos de uma função para comparar os dados (próximo slide);
 \item Testamos se há espaço;
 \item Procuramos pela posição onde inserir comparando dados;
-\item Chamamos adicionaNaPosição.
+\item Chamamos adicionaNaPosicao.
 \end{itemize}
 \column{.5\textwidth}
 \begin{center}
@@ -2013,7 +2013,7 @@ Inserir
 \item Necessitamos de uma função para comparar os dados (próximo slide);
 \item Testamos se há espaço;
 \item Procuramos pela posição onde inserir comparando dados;
-\item Chamamos adicionaNaPosição.
+\item Chamamos adicionaNaPosicao.
 \end{itemize}
 \column{.5\textwidth}
 \begin{center}
@@ -2069,7 +2069,7 @@ adicionaNaPosicao(45,3);
 \begin{itemize}
 \item Quando o dado a ser armazenado em uma lista não for um tipo primitivo, este tem que implementar a sobrecarga do operador ``>";
 \item Para deixar os algoritmos de operações sobre lista independentes do tipo de dado específico armazenado na lista, usamos uma função do tipo T::operator>(T t);
-\item Isso não deve ser implementado pelo progrmador da lista, mas pelo programador dos objetos que serão colocados na lista;
+\item Isso não deve ser implementado pelo programador da lista, mas pelo programador dos objetos que serão colocados na lista;
 \end{itemize}
 \end{frame}
 
@@ -2128,7 +2128,7 @@ inicio
 fim;
 \end{lstlisting}
 \begin{itemize}
-\item Por conta do Aluno: Essa impelementação pode ser melhorada usando a técnica ``dividir-para-conquistar";
+\item Por conta do Aluno: Essa implementação pode ser melhorada usando a técnica ``dividir-para-conquistar";
 \end{itemize}
 \end{frame}
 
@@ -2196,7 +2196,7 @@ fim;
 \item T retiraEspecifico(T dado);
 \item bool contem(dado);
 \end{itemize}
-\item Não esqueça da sobrecarga de operadores nos tipos não primtiivos:
+\item Não esqueça da sobrecarga de operadores nos tipos não primitivos:
 \begin{itemize}
 \item  T::operator=(T t);
 \item  T::operator<(T t).
