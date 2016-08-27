@@ -1,0 +1,112 @@
+\documentclass[12pt,table,xcolor={dvipsnames}]{beamer}
+\usetheme{Pittsburgh}
+\usecolortheme{seagull}
+%\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\usepackage[brazilian]{babel}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{lstlinebgrd}
+\usepackage{graphicx}
+\author{Ponteiros, Modelo de execução de Funções, Debuging e Testes}
+\title{Estruturas de Dados}
+%\setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{}
+%\logo{\includegraphics[scale=0.015]{Brasao_UFSC.png}\includegraphics[scale=0.2]{brasao_PPGCC.jpg}}
+\institute{Departamento de Informática e de Estatística \\ Prof. Jean Everson Martina \\ Prof. Aldo von Wangenheim}
+\date{2016.2}
+\subject{}
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_UFSC.png}}
+\begin{document}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+\titlepage
+\includegraphics[scale=0.3]{../reusable_images/brasao_INE.png}
+\end{frame}
+}
+
+\begin{frame}[fragile]{Definições de Lista}
+\begin{itemize}
+\item 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Modelagem da Lista de Vetor}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos de um vetor para armazenar as informações;
+\item Necessitamos de um indicador da posição atual do ultimo elemento da lista;
+\end{itemize}
+\begin{lstlisting}
+constantes MAXLISTA = 100;
+
+classe Lista {
+ T _dados[MAXLISTA]; // Vetor Estatico
+ inteiro _ultimo;
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Trabalho Lista de Vetor}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Implemente uma classe Lista todas as operações vistas;
+\item Implemente a lista usando Templates;
+\item Implemente a lista com um numero de elementos variável definido na instanciação;
+\item Use as melhores práticas de orientação a objetos;
+\item Documente todas as classes, métodos e atributos;
+\item Aplique os testes unitários disponíveis no moodle da disciplina para validar sua estrutura de dados;
+\item Entregue até a data definida no moodle.
+\end{itemize}
+\end{frame}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+
+{\LARGE Perguntas????}
+
+\end{frame}
+}
+
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,
+height=\paperheight]{../reusable_images/fundo_capa.png}}
+\begin{frame}
+\includegraphics[scale=0.8]{../reusable_images/cc_logo_arge.png}\hspace{0.5cm}
+\includegraphics[scale=0.95]{../reusable_images/by.png}
+
+\vspace{1cm}
+Este trabalho está licenciado sob uma Licença Creative Commons Atribuição 4.0 Internacional. Para ver uma cópia desta licença, visite http://creativecommons.org/licenses/by/4.0/.
+
+\end{frame}
+}
+\end{document}
