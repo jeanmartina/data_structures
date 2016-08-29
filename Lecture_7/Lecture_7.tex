@@ -6,6 +6,8 @@
 \usepackage[brazilian]{babel}
 \usepackage{amsmath}
 \usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes.multipart,chains,arrows, positioning}
 \usepackage{multirow}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -32,14 +34,132 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \end{frame}
 }
 
-\begin{frame}[fragile]{Definições de Lista}
+\begin{frame}[fragile]{Listas Usando Vetores: Desvantagens}
+\begin{columns}
+\column{.5\textwidth}
 \begin{itemize}
-\item 
+\item Tamanho máximo fixo;
+\item Mesmo vazias ocupam um grande espaço de memória;
+\item Operações podem envolver muitos deslocamentos de dados:
+\begin{itemize}
+\item Inclusão em uma posição ou no início;
+\item Exclusão em uma posição ou no início.
+\end{itemize}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Definições de Lista Encadeada}
+\begin{itemize}
+\item São listas onde cada elemento está armazenado em um objeto chamada elemento de lista;
+\item Cada elemento de lista referencia o próximo e só é alocado dinamicamente quando necessário;
+\item Para referenciar o primeiro elemento utilizamos um objeto cabeça de lista.
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}[fragile]{Modelagem da Lista de Vetor}
+\begin{frame}[fragile]{Lista Encadeada}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, >=stealth, start chain]
+
+  \node[list,on chain] (H) {3};
+  \node[list,on chain] (A) [below=of H] {melão};
+  \node[list,on chain] (B) {maçã};
+  \node[list,on chain] (C) {uva};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Lista Encadeada}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, >=stealth, start chain]
+
+  \node[list,on chain] (H) {3};
+  \node at (2,0) (T) {\color{red}Cabeça};
+  \draw[red,<-] (H) -- (T.west);
+  \node[list,on chain] (A) [below=of H] {melão};
+  \node[list,on chain] (B) {maçã};
+  \node[list,on chain] (C) {uva};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Lista Encadeada}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, >=stealth, start chain]
+
+  \node[list,on chain] (H) {3};
+  \node at (2,0) (T) {\color{red}Cabeça};
+  \draw[red,<-] (H) -- (T.west);
+  \node[list,on chain] (A) [below=of H] {melão};
+  \node (T2)[below=of A] {\color{red}Elemento};
+  \draw[red,<-] (A) -- (T2.north);
+  \node[list,on chain] (B) {maçã};
+  \node[list,on chain] (C) {uva};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Lista Encadeada}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, >=stealth, start chain]
+
+  \node[list,on chain] (H) {3};
+  \node at (2,0) (T) {\color{red}Cabeça};
+  \draw[red,<-] (H) -- (T.west);
+  \node[list,on chain] (A) [below=of H] {melão};
+  \node (T2)[below=of A] {\color{red}Elemento};
+  \draw[red,<-] (A) -- (T2.north);
+  \node[list,on chain] (B) {maçã};
+  \node[list,on chain] (C) {uva};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \node (T3)[below=of D] {\color{red}Marcador Fim};
+  \draw[red,<-] (D) -- (T3.north);  
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{Modelagem da Cabeça de Lista}
 \lstset{language=C++,
           keywordstyle=\color{blue}\ttfamily,
           stringstyle=\color{red}\ttfamily,
@@ -51,23 +171,1370 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \begin{itemize}
 \item Aspecto Estrutural:
 \begin{itemize}
-\item Necessitamos de um vetor para armazenar as informações;
-\item Necessitamos de um indicador da posição atual do ultimo elemento da lista;
+\item Necessitamos um ponteiro para o primeiro elemento da lista;
+\item Necessitamos um inteiro para indicar quantos elementos a lista possui.
 \end{itemize}
 \begin{lstlisting}
-constantes MAXLISTA = 100;
-
 classe Lista {
- T _dados[MAXLISTA]; // Vetor Estatico
- inteiro _ultimo;
+ Elemento *_dados;
+ inteiro _tamanho;
 };
 \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 
+\begin{frame}[fragile]{Modelagem da Elemento de Lista}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
 
-\begin{frame}[fragile]{Trabalho Lista de Vetor}
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos um ponteiro para o próximo elemento da lista;
+\item Necessitamos um campo do tipo da informação que vamos armazenar.
+\end{itemize}
+\begin{lstlisting}
+classe Elemento {
+ Elemento *_proximo;
+ T _info;
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem de Lista Encadeada}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle split, rectangle, draw=green!60, fill=green!5,},    
+    >=stealth, start chain]
+
+  \node[list,on chain] (H) {3};
+  \node[list,on chain] (A) [below=of H] {melão};
+  \node[list,on chain] (B) {maçã};
+  \node[list,on chain] (C) {uva};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem de Lista Encadeada}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  \node[list,on chain] (H) {3};
+  \node[list,on chain] (A) [below=of H] {};
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \node[list,on chain] (B) {};
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \node[list,on chain] (C) {};
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+  \node[element] (AP) [below=of A] {melão};
+  \draw[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node[element] (BP) [below=of B] {maçã};
+  \draw[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node[element] (CP) [below=of C] {uva};
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+ 
+\end{tikzpicture}\pause
+\end{center}
+Para tornar todos os algoritmos da lista mais genéricos, fazemos o campo info ser um ponteiro para um elemento de informação.
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Elemento de Lista}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos um ponteiro para o próximo elemento da lista;
+\item Necessitamos um ponteiro do tipo da informação que vamos armazenar.
+\item T necessita de um destrutor próprio, assim como a lista (neste caso a cabeça) vai precisar de um também;
+\end{itemize}
+\begin{lstlisting}
+classe Elemento {
+ Elemento *_proximo;
+ T *_info;
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Lista Encadeada}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Funcional:
+\begin{itemize}
+\item Temos que colocar e retirar dados da lista;
+\item Temos que testar se a lista está vazia (dentre outros testes);
+\item Temos que inicializar a lista e garantir a ordem de seus elementos.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Lista Encadeada}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Inicializar ou limpar:
+\begin{itemize}
+\item Lista();
+\item limpaLista();
+\item \~{}Lista();
+\end{itemize}
+\item Testar se a lista está vazia ou cheia e outros testes:
+\begin{itemize}
+\item bool listaVazia();
+\item int posicao(dado);
+\item bool contem(dado);
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Lista Encadeada}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Colocar e retirar dados da lista:
+\begin{itemize}
+\item adiciona(T dado);
+\item adicionaNoInicio(T dado);
+\item adicionaNaPosicao(T dado, int posicao);
+\item adicionaEmOrdem(T dado);
+\item T retira();
+\item T retiraDoInicio();
+\item T retiraDaPosicao(int posicao);
+\item T retiraEspecifico(dado);
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{Lista()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Inicializamos o ponteiro para nulo;
+\item Inicializamos o tamanho para ``0'';
+\end{itemize}
+\begin{lstlisting}
+Lista()
+inicio
+  _dados = null;
+  _tamanho <- 0;
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{\~{}Lista()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Chamamos DestroiLista();
+\end{itemize}
+\begin{lstlisting}
+~Lista()
+inicio
+  DestroiLista();
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{listaVazia()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+bool listaVazia()
+inicio
+SE (_tamanho = 0) ENTAO
+ RETORNE(Verdadeiro)
+SENAO
+ RETORNE(Falso);
+fim;
+\end{lstlisting}
+\begin{itemize}
+\item Um algoritmo ListaCheia não existe na Lista Encadeada;\pause
+\item Verificar se houve espaço na memória para um novo elemento será responsabilidade de cada operação de adição.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\setbeamercovered{invisible}
+\begin{itemize}
+\item Testamos se é possível alocar um elemento;\pause
+\item Fazemos o próximo deste novo elemento ser o primeiro da lista;\pause
+\item Fazemos a cabeça de lista apontar para o novo elemento.\pause
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  \node<8->[list] (H) {3};
+  \node<4-7>[list,on chain] (H) {2};
+
+  \node<5->[list,draw=blue!60, fill=blue!5,on chain] (N) [below left=of H] {Novo}; 
+  \draw<5->[*->] let \p1 = (N.two), \p2 = (N.center) in (\x1,\y2) -- (A);  
+  
+  \node<5->[list,on chain] (A) [below=of H] {};
+  \draw<5->[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node<5->[element] (AP) [below=of A] {melão};
+  \draw<6->[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  
+  \node<4>[list,on chain] (B) [below right=of H] {};
+  \node<5->[list,on chain] (B) {};
+  
+  \draw<4-6>[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (B);
+  \draw<7->[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  
+  
+  \node[list,on chain] (C) {};
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+  
+  \node[element] (BP) [below=of B] {maçã}; 
+  \draw[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node[element] (CP) [below=of C] {uva};
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+ 
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+adicionaNoInicio(T dado)
+ Elemento *novo; //Variável auxiliar.
+ início
+  novo <- aloque(Elemento);
+  SE (novo = NULO) ENTAO
+   THROW(ERROLISTACHEIA);
+  SENAO
+   novo->_proximo <- _dados;
+   novo->_info <- dado;
+   _dados <- novo;
+   _tamanho <- _tamanho + 1;
+  FIM SE
+  fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+adicionaNoInicio(T dado)
+ Elemento *novo; //Variável auxiliar.
+ início
+  (*@  \textcolor{red}{novo <- aloque(Elemento);}  @*)
+  (*@  \textcolor{red}{SE (novo = NULO) ENTAO}  @*)
+   (*@  \textcolor{red}{THROW(ERROLISTACHEIA);}  @*)
+  SENAO
+   novo->_proximo <- _dados;
+   novo->_info <- dado;
+   _dados <- novo;
+   _tamanho <- _tamanho + 1;
+  FIM SE
+  fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicio(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+adicionaNoInicio(T dado)
+ Elemento *novo; //Variável auxiliar.
+ início
+  novo <- aloque(Elemento);
+  SE (novo = NULO) ENTAO
+   THROW(ERROLISTACHEIA);
+  (*@  \textcolor{red}{SENAO}  @*)
+   (*@  \textcolor{red}{novo->\_proximo <- \_dados;}  @*)
+   (*@  \textcolor{red}{novo->\_info <- dado;}  @*)
+   (*@  \textcolor{red}{\_dados <- novo;}  @*)
+   (*@  \textcolor{red}{\_tamanho <- \_tamanho + 1;}  @*)
+  (*@  \textcolor{red}{FIM SE}  @*)
+  fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\setbeamercovered{invisible}
+\begin{itemize}
+\item Testamos se há elementos;\pause
+\item Decrementamos o tamanho;\pause
+\item Liberamos a memória do elemento;\pause
+\item Devolvemos a informação.\pause
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  \node<5-6>[list] (H) {3};
+  \node<7->[list,on chain] (H) {2};
+
+  \node<6-8>[list,draw=blue!60, fill=blue!5,on chain] (S) [below left=of H] {Saiu}; 
+  \draw<6-8>[*->] let \p1 = (S.two), \p2 = (S.center) in (\x1,\y2) -- (A);  
+  
+  \node<6->[list,draw=blue!60, fill=blue!5,on chain] (V) [left=of AP] {Volta}; 
+  \draw<6->[*->] let \p1 = (V.two), \p2 = (V.center) in (\x1,\y2) -- (AP);  
+  
+  \node<5-7>[list,on chain] (A) [below=of H] {};
+  \draw<5-7>[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node<5-8>[element] (AP) [below=of A] {melão};
+  \draw<5-7>[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  
+  \node<7->[list,on chain] (B) [below right=of H] {};
+  \node<5-6>[list,on chain] (B) {};
+  
+  \draw<7->[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (B);
+  \draw<5-6>[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  
+  
+  \node[list,on chain] (C) {};
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+  
+  \node[element] (BP) [below=of B] {maçã}; 
+  \draw[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node[element] (CP) [below=of C] {uva};
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+ 
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+T retiraDoInicio()
+ Elemento *saiu; //Variável auxiliar elemento.
+ T *volta; //Variável auxiliar tipo T.
+	início
+		SE (listaVazia()) ENTAO
+		  THROW(ERROLISTAVAZIA);
+		SENAO
+		  saiu <- _dados;
+		  volta <- saiu->info;
+		  _dados <- saiu->próximo;
+		  _tamanho <- _tamanho - 1;
+		  LIBERE(saiu);
+		  RETORNE(volta);
+		FIM SE
+	fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+T retiraDoInicio()
+ Elemento *saiu; //Variável auxiliar elemento.
+ T *volta; //Variável auxiliar tipo T.
+	início
+		(*@  \textcolor{red}{SE (listaVazia()) ENTAO}  @*)
+		  (*@  \textcolor{red}{THROW(ERROLISTAVAZIA);}  @*)
+		(*@  \textcolor{red}{SENAO}  @*)
+		  saiu <- _dados;
+		  volta <- saiu->info;
+		  _dados <- saiu->próximo;
+		  _tamanho <- _tamanho - 1;
+		  LIBERE(saiu);
+		  RETORNE(volta);
+		FIM SE
+	fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+T retiraDoInicio()
+ Elemento *saiu; //Variável auxiliar elemento.
+ T *volta; //Variável auxiliar tipo T.
+	início
+		SE (listaVazia()) ENTAO
+		  THROW(ERROLISTAVAZIA);
+		SENAO
+		  (*@  \textcolor{red}{saiu <- \_dados;}  @*)
+		  (*@  \textcolor{red}{volta <- saiu->info;}  @*)
+		  (*@  \textcolor{red}{\_dados <- saiu->próximo;}  @*)
+		  (*@  \textcolor{red}{\_tamanho <- \_tamanho - 1;}  @*)
+		  LIBERE(saiu);
+		  RETORNE(volta);
+		FIM SE
+	fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicio()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+T retiraDoInicio()
+ Elemento *saiu; //Variável auxiliar elemento.
+ T *volta; //Variável auxiliar tipo T.
+	início
+		SE (listaVazia()) ENTAO
+		  THROW(ERROLISTAVAZIA);
+		SENAO
+		  saiu <- _dados;
+		  volta <- saiu->info;
+		  _dados <- saiu->próximo;
+		  _tamanho <- _tamanho - 1;
+		  (*@  \textcolor{red}{LIBERE(saiu);}  @*)
+		  (*@  \textcolor{red}{RETORNE(volta);}  @*)
+		FIM SE
+	fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{eliminaDoInicio()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+(*@  \textcolor{red}{eliminaDoInicio()}  @*)
+ Elemento *saiu; //Variável auxiliar elemento.
+	início
+		SE (listaVazia()) ENTAO
+		  THROW(ERROLISTAVAZIA);
+		SENAO
+		  saiu <- _dados;
+		  volta <- saiu->info;
+		  _dados <- saiu->próximo;
+		  _tamanho <- _tamanho - 1;
+		  LIBERE(saiu);
+		  LIBERE(saiu->info);
+		FIM SE
+	fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Algoritmo eliminaDoInicio()}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Observe que a linha LIBERE(saiu->info) possui um perigo:
+\begin{itemize}
+\item Se o T for por sua vez um conjunto estruturado de dados com referências internas através de ponteiros (outra lista, por exemplo), a chamada à função LIBERE(saiu->info) só liberará o primeiro nível da estrutura (aquele apontado diretamente);
+\item Tudo o que for referenciado através de ponteiros em info permanecerá em algum lugar da memória, provavelmente inatingível (garbage);
+\item Para evitar isto pode-se criar uma função destrói(info) para o T que será chamada no lugar de LIBERE.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Importância do Destrutor}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item O destrutor diz como o objeto será destruído quando sair de escopo;
+\item No mínimo deve liberar a memória que foi alocada por chamadas “new”no construtor;
+\item Se nenhum destrutor for declarado será gerado um default, que aplicará o destrutor correspondente a cada dado da classe;
+\item A recursão tem que ser garantida pelo objeto.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\setbeamercovered{invisible}
+\begin{itemize}
+\item Testamos se a posição existe e se é possível alocar;\pause
+\item Caminhamos até a posição;\pause
+\item Adicionamos o novo dado na posição;\pause
+\item Incrementamos o tamanho.\pause
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  %cabeca
+  \node<11->[list] (H) {3};
+  \node<5-10>[list,on chain] (H) {2};
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+
+  %novo
+  \node<7->[list,draw=blue!60, fill=blue!5,on chain] (N) [right=of H] {Novo}; 
+  \draw<8->[*->] let \p1 = (N.two), \p2 = (N.center) in (\x1+2,\y2+2) -- (B);  
+  
+  %anterior
+  \node<6->[list,draw=blue!60, fill=blue!5,on chain] (AN) [left=of A] {Anterior}; 
+  \draw<6->[*->] let \p1 = (AN.two), \p2 = (AN.center) in (\x1,\y2) -- (A);   
+  
+  %primeiro elemento
+  \node[list,on chain] (A) [below=of H] {};
+  \node<8->[list,on chain] (B) {};
+  \node[list,on chain] (C) {};
+  %dados 
+  \draw[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node[element] (AP) [below=of A] {melão};
+  %ponteiros
+  \draw<10->[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \draw<5-6>[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (C);
+  \draw<7-9>[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1+2,\y2-2) .. controls +(north:10mm) and +(up:10mm)  .. (C.north);
+  
+  
+   %segundo elemento
+  %dados
+  \draw<8->[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node<8->[element] (BP) [below=of B] {maçã}; 
+  %ponteiro
+  \draw<9->[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  
+  %terceiro elemento  
+  
+  %dados
+  \node[element] (CP) [below=of C] {uva};
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+   %null pointer
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  %ponteiro
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+  
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaNaPosicao(T dado, int posicao)
+ Elemento *novo, *anterior; // auxiliares.
+ inicio
+  SE (posicao > _tamanho + 1) ENTAO THROW(ERROPOSICAO);
+  SENAO
+   SE (posicao = 1) ENTAO RETORNE(adicionaNoInício(info));
+   SENAO
+    novo <- aloque(Elemento);
+    SE (novo = NULO) ENTÃO THROW(ERROLISTACHEIA);
+    SENAO
+     anterior <- _dados;
+     REPITA (posicao - 2) VEZES
+      anterior <- anterior->_proximo;
+     novo->_proximo <- anterior->_proximo;
+     novo->_info <- info;
+     anterior->_proximo <- novo;
+     _tamanho <- _tamanho + 1;
+    FIM SE
+   FIM SE
+  FIM SE
+fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaNaPosicao(T dado, int posicao)
+ Elemento *novo, *anterior; // auxiliares.
+ inicio
+(*@  \textcolor{red}{  SE (posicao > \_tamanho + 1) ENTAO THROW(ERROPOSICAO);}  @*)
+  SENAO
+   SE (posicao = 1) ENTAO RETORNE(adicionaNoInício(info));
+   SENAO
+    novo <- aloque(Elemento);
+    SE (novo = NULO) ENTÃO THROW(ERROLISTACHEIA);
+    SENAO
+     anterior <- _dados;
+     REPITA (posicao - 2) VEZES
+      anterior <- anterior->_proximo;
+     novo->_proximo <- anterior->_proximo;
+     novo->_info <- info;
+     anterior->_proximo <- novo;
+     _tamanho <- _tamanho + 1;
+    FIM SE
+   FIM SE
+  FIM SE
+fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaNaPosicao(T dado, int posicao)
+ Elemento *novo, *anterior; // auxiliares.
+ inicio
+  SE (posicao > _tamanho + 1) ENTAO THROW(ERROPOSICAO);
+  (*@  \textcolor{red}{SENAO}  @*)
+   (*@  \textcolor{red}{SE (posicao = 1) ENTAO RETORNE(adicionaNoInício(info));}  @*)
+   SENAO
+    novo <- aloque(Elemento);
+    SE (novo = NULO) ENTÃO THROW(ERROLISTACHEIA);
+    SENAO
+     anterior <- _dados;
+     REPITA (posicao - 2) VEZES
+      anterior <- anterior->_proximo;
+     novo->_proximo <- anterior->_proximo;
+     novo->_info <- info;
+     anterior->_proximo <- novo;
+     _tamanho <- _tamanho + 1;
+    FIM SE
+   FIM SE
+  FIM SE
+fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaNaPosicao(T dado, int posicao)
+ Elemento *novo, *anterior; // auxiliares.
+ inicio
+  SE (posicao > _tamanho + 1) ENTAO THROW(ERROPOSICAO);
+  SENAO
+   SE (posicao = 1) ENTAO RETORNE(adicionaNoInício(info));
+   (*@  \textcolor{red}{SENAO}  @*)
+    (*@  \textcolor{red}{novo <- aloque(Elemento);}  @*)
+    (*@  \textcolor{red}{SE (novo = NULO) ENTÃO THROW(ERROLISTACHEIA);}  @*)
+    SENAO
+     anterior <- _dados;
+     REPITA (posicao - 2) VEZES
+      anterior <- anterior->_proximo;
+     novo->_proximo <- anterior->_proximo;
+     novo->_info <- info;
+     anterior->_proximo <- novo;
+     _tamanho <- _tamanho + 1;
+    FIM SE
+   FIM SE
+  FIM SE
+fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaNaPosicao(T dado, int posicao)
+ Elemento *novo, *anterior; // auxiliares.
+ inicio
+  SE (posicao > _tamanho + 1) ENTAO THROW(ERROPOSICAO);
+  SENAO
+   SE (posicao = 1) ENTAO RETORNE(adicionaNoInício(info));
+   SENAO
+    novo <- aloque(Elemento);
+    SE (novo = NULO) ENTÃO THROW(ERROLISTACHEIA);
+    (*@  \textcolor{red}{SENAO}  @*)
+     (*@  \textcolor{red}{anterior <- \_dados;}  @*)
+     (*@  \textcolor{red}{REPITA (posicao - 2) VEZES}  @*)
+      (*@  \textcolor{red}{anterior <- anterior->\_proximo;}  @*)
+     novo->_proximo <- anterior->_proximo;
+     novo->_info <- info;
+     anterior->_proximo <- novo;
+     _tamanho <- _tamanho + 1;
+    FIM SE
+   FIM SE
+  FIM SE
+fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicao(T dado, int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaNaPosicao(T dado, int posicao)
+ Elemento *novo, *anterior; // auxiliares.
+ inicio
+  SE (posicao > _tamanho + 1) ENTAO THROW(ERROPOSICAO);
+  SENAO
+   SE (posicao = 1) ENTAO RETORNE(adicionaNoInício(info));
+   SENAO
+    novo <- aloque(Elemento);
+    SE (novo = NULO) ENTÃO THROW(ERROLISTACHEIA);
+    SENAO
+     anterior <- _dados;
+     REPITA (posicao - 2) VEZES
+      anterior <- anterior->_proximo;
+     (*@  \textcolor{red}{novo->\_proximo <- anterior->\_proximo;}  @*)
+     (*@  \textcolor{red}{novo->\_info <- info;}  @*)
+     (*@  \textcolor{red}{anterior->\_proximo <- novo;}  @*)
+     (*@  \textcolor{red}{\_tamanho <- \_tamanho + 1;}  @*)
+    FIM SE
+   FIM SE
+  FIM SE
+fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDaPosicao(int posicao)}}
+\setbeamercovered{invisible}
+\begin{itemize}
+\item Testamos se a posição existe;\pause
+\item Caminhamos até a posição;\pause
+\item Retiramos o dado da posição;\pause
+\item Decrementamos o tamanho.\pause
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  %cabeca
+  \node<5-9>[list] (H) {3};
+  \node<10->[list,on chain] (H) {2};
+  \draw<5->[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+
+  %volta
+  \node<7->[list,draw=blue!60, fill=blue!5,on chain] (V) [left=of AP] {Volta}; 
+  \draw<7->[*->] let \p1 = (V.two), \p2 = (V.center) in (\x1+2,\y2+2) .. controls +(south:10mm) and +(down:10mm)  .. (BP);  
+  
+  %anterior
+  \node<6->[list,draw=blue!60, fill=blue!5,on chain] (AN) [left=of A] {Anterior}; 
+  \draw<6->[*->] let \p1 = (AN.two), \p2 = (AN.center) in (\x1,\y2) -- (A);   
+  
+  %eliminar
+  \node<8->[list,draw=blue!60, fill=blue!5,on chain] (E) [right=of H] {Eliminar}; 
+  \draw<8-10>[*->] let \p1 = (E.two), \p2 = (E.center) in (\x1+2,\y2) -- (B);    
+  
+  %primeiro elemento
+  \node[list,on chain] (A) [below=of H] {};
+  \node<5-10>[list,on chain] (B) {};
+  \node[list,on chain] (C) {};
+  %dados 
+  \draw[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node[element] (AP) [below=of A] {melão};
+  %ponteiros
+  \draw<5-8>[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \draw<9->[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1+2,\y2-2) .. controls +(north:10mm) and +(up:10mm)  .. (C.north);
+
+  
+   %segundo elemento
+  %dados
+  \draw<5-10>[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node[element] (BP) [below=of B] {maçã}; 
+  %ponteiro
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  
+  %terceiro elemento  
+  
+  %dados
+  \node[element] (CP) [below=of C] {uva};
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+   %null pointer
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  %ponteiro
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+  
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDaPosicao(int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+T retiraDaPosicao(int posicao)
+ Elemento *anterior, *eliminar; //Variáveis elemento.
+ T *volta; //Variável tipo T.
+ inicio
+  SE (posicao > _tamanho) ENTAO THROW(ERROPOSICAO);
+  SENAO
+   SE (posicao = 1) ENTAO RETORNE(retiraDoInicio());
+   SENAO
+    anterior <- _dados;
+    REPITA (posicao - 2) VEZES
+     anterior <- anterior->_proximo;
+    eliminar <- anterior->_proximo;
+    volta <- eliminar->_info;
+    anterior->_proximo <- eliminar->_proximo;
+    _tamanho <- _tamanho - 1;
+    LIBERE(eliminar);
+    RETORNE(volta);
+   FIM SE
+  FIM SE
+ fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDaPosicao(int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+T retiraDaPosicao(int posicao)
+ Elemento *anterior, *eliminar; //Variáveis elemento.
+ T *volta; //Variável tipo T.
+ inicio
+  (*@  \textcolor{red}{SE (posicao > \_tamanho) ENTAO THROW(ERROPOSICAO);}  @*)
+  SENAO
+   SE (posicao = 1) ENTAO RETORNE(retiraDoInicio());
+   SENAO
+    anterior <- _dados;
+    REPITA (posicao - 2) VEZES
+     anterior <- anterior->_proximo;
+    eliminar <- anterior->_proximo;
+    volta <- eliminar->_info;
+    anterior->_proximo <- eliminar->_proximo;
+    _tamanho <- _tamanho - 1;
+    LIBERE(eliminar);
+    RETORNE(volta);
+   FIM SE
+  FIM SE
+ fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDaPosicao(int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+T retiraDaPosicao(int posicao)
+ Elemento *anterior, *eliminar; //Variáveis elemento.
+ T *volta; //Variável tipo T.
+ inicio
+  SE (posicao > _tamanho) ENTAO THROW(ERROPOSICAO);
+  (*@  \textcolor{red}{SENAO}  @*)
+   (*@  \textcolor{red}{SE (posicao = 1) ENTAO RETORNE(retiraDoInicio());}  @*)
+   SENAO
+    anterior <- _dados;
+    REPITA (posicao - 2) VEZES
+     anterior <- anterior->_proximo;
+    eliminar <- anterior->_proximo;
+    volta <- eliminar->_info;
+    anterior->_proximo <- eliminar->_proximo;
+    _tamanho <- _tamanho - 1;
+    LIBERE(eliminar);
+    RETORNE(volta);
+   FIM SE
+  FIM SE
+ fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDaPosicao(int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+T retiraDaPosicao(int posicao)
+ Elemento *anterior, *eliminar; //Variáveis elemento.
+ T *volta; //Variável tipo T.
+ inicio
+  SE (posicao > _tamanho) ENTAO THROW(ERROPOSICAO);
+  SENAO
+   SE (posicao = 1) ENTAO RETORNE(retiraDoInicio());
+   (*@  \textcolor{red}{SENAO}  @*)
+    (*@  \textcolor{red}{anterior <- \_dados;}  @*)
+    (*@  \textcolor{red}{REPITA (posicao - 2) VEZES}  @*)
+     (*@  \textcolor{red}{anterior <- anterior->\_proximo;}  @*)
+    eliminar <- anterior->_proximo;
+    volta <- eliminar->_info;
+    anterior->_proximo <- eliminar->_proximo;
+    _tamanho <- _tamanho - 1;
+    LIBERE(eliminar);
+    RETORNE(volta);
+   FIM SE
+  FIM SE
+ fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDaPosicao(int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+T retiraDaPosicao(int posicao)
+ Elemento *anterior, *eliminar; //Variáveis elemento.
+ T *volta; //Variável tipo T.
+ inicio
+  SE (posicao > _tamanho) ENTAO THROW(ERROPOSICAO);
+  SENAO
+   SE (posicao = 1) ENTAO RETORNE(retiraDoInicio());
+   SENAO
+    anterior <- _dados;
+    REPITA (posicao - 2) VEZES
+     anterior <- anterior->_proximo;
+    (*@  \textcolor{red}{eliminar <- anterior->\_proximo;}  @*)
+    (*@  \textcolor{red}{volta <- eliminar->\_info;}  @*)
+    (*@  \textcolor{red}{anterior->\_proximo <- eliminar->\_proximo;}  @*)
+    (*@  \textcolor{red}{\_tamanho <- \_tamanho - 1;}  @*)
+    (*@  \textcolor{red}{LIBERE(eliminar);}  @*)
+    (*@  \textcolor{red}{RETORNE(volta);}  @*)
+   FIM SE
+  FIM SE
+ fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaEmOrdem(T dado)}}
+\setbeamercovered{invisible}
+\begin{itemize}
+\item Necessitamos de um método para comparar os dados (operator::>);
+\item Procuramos pela posição onde inserir comparando dados;
+\item Chamamos adicionaNaPosicao(T dado, int posicao).
+\end{itemize}
+\begin{block}{Dica!}
+Podemos implementar um versão polimórfica de adicionaNaPosicao(T dado, int posicao) que é adicionaNaPosicao(T dado, Elemento* posicao)
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaEmOrdem(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaEmOrdem(T dado)
+ Elemento *atual; //Variável para caminhar.
+ int posicao; // Posicao de Insercao.
+ inicio
+  SE (listaVazia()) ENTAO RETORNE(adicionaNoInicio(dado));
+  SENAO
+   atual <- _dados;
+   posicao <- 1;
+   ENQUANTO (atual->_proximo ~= NULO E
+             dado > atual->_info)) FACA 
+    //Encontrar posição para inserir.
+    atual <- atual->_proximo;
+    posicao <- posicao + 1;
+   FIM ENQUANTO
+   SE (dado > atual->_info) ENTAO //Parou porque acabou a lista.
+    RETORNE(adicionaNaPosicao(dado, posicao + 1));
+   SENAO
+    RETORNE(adicionaNaPosicao(dado, posicao));
+   FIM SE
+  FIM SE
+ fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaEmOrdem(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaEmOrdem(T dado)
+ Elemento *atual; //Variável para caminhar.
+ int posicao; // Posicao de Insercao.
+ inicio
+  (*@  \textcolor{red}{SE (listaVazia()) ENTAO RETORNE(adicionaNoInicio(dado));}  @*)
+  SENAO
+   atual <- _dados;
+   posicao <- 1;
+   ENQUANTO (atual->_proximo ~= NULO E
+             dado > atual->_info)) FACA 
+    //Encontrar posição para inserir.
+    atual <- atual->_proximo;
+    posicao <- posicao + 1;
+   FIM ENQUANTO
+   SE (dado > atual->_info) ENTAO //Parou porque acabou a lista.
+    RETORNE(adicionaNaPosicao(dado, posicao + 1));
+   SENAO
+    RETORNE(adicionaNaPosicao(dado, posicao));
+   FIM SE
+  FIM SE
+ fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaEmOrdem(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaEmOrdem(T dado)
+ Elemento *atual; //Variável para caminhar.
+ int posicao; // Posicao de Insercao.
+ inicio
+  SE (listaVazia()) ENTAO RETORNE(adicionaNoInicio(dado));
+  (*@  \textcolor{red}{SENAO}  @*)
+   (*@  \textcolor{red}{atual <- \_dados;}  @*)
+   (*@  \textcolor{red}{posicao <- 1;}  @*)
+   (*@  \textcolor{red}{ENQUANTO (atual->\_proximo ~= NULO E}  @*)
+             (*@  \textcolor{red}{dado > atual->\_info)) FACA }  @*)
+    (*@  \textcolor{red}{//Encontrar posição para inserir.}  @*)
+    (*@  \textcolor{red}{atual <- atual->\_proximo;}  @*)
+    (*@  \textcolor{red}{posicao <- posicao + 1;}  @*)
+   FIM ENQUANTO
+   SE (dado > atual->_info) ENTAO //Parou porque acabou a lista.
+    RETORNE(adicionaNaPosicao(dado, posicao + 1));
+   SENAO
+    RETORNE(adicionaNaPosicao(dado, posicao));
+   FIM SE
+  FIM SE
+ fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaEmOrdem(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaEmOrdem(T dado)
+ Elemento *atual; //Variável para caminhar.
+ int posicao; // Posicao de Insercao.
+ inicio
+  SE (listaVazia()) ENTAO RETORNE(adicionaNoInicio(dado));
+  SENAO
+   atual <- _dados;
+   posicao <- 1;
+   ENQUANTO (atual->_proximo ~= NULO E
+             dado > atual->_info)) FACA 
+    //Encontrar posição para inserir.
+    atual <- atual->_proximo;
+    posicao <- posicao + 1;
+   FIM ENQUANTO
+   (*@  \textcolor{red}{SE (dado > atual->\_info) ENTAO //Parou porque acabou a lista.}  @*)
+    (*@  \textcolor{red}{RETORNE(adicionaNaPosicao(dado, posicao + 1));}  @*)
+   SENAO
+    RETORNE(adicionaNaPosicao(dado, posicao));
+   FIM SE
+  FIM SE
+ fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaEmOrdem(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaEmOrdem(T dado)
+ Elemento *atual; //Variável para caminhar.
+ int posicao; // Posicao de Insercao.
+ inicio
+  SE (listaVazia()) ENTAO RETORNE(adicionaNoInicio(dado));
+  SENAO
+   atual <- _dados;
+   posicao <- 1;
+   ENQUANTO (atual->_proximo ~= NULO E
+             dado > atual->_info)) FACA 
+    //Encontrar posição para inserir.
+    atual <- atual->_proximo;
+    posicao <- posicao + 1;
+   FIM ENQUANTO
+   SE (dado > atual->_info) ENTAO //Parou porque acabou a lista.
+    RETORNE(adicionaNaPosicao(dado, posicao + 1));
+   (*@  \textcolor{red}{SENAO}  @*)
+    (*@  \textcolor{red}{RETORNE(adicionaNaPosicao(dado, posicao));}  @*)
+   FIM SE
+  FIM SE
+ fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Algoritmos Restantes - Por conta do aluno}
+\setbeamercovered{invisible}
+\begin{itemize}
+\item Adiciona(dado):
+\begin{itemize}
+\item AdicionaNaPosicao(tamanho);
+\end{itemize}
+\item Retira():
+\begin{itemize}
+\item T RetiraDaPosicao(tamanho);
+\end{itemize}
+\item T RetiraEspecifico(dado).
+\item int posicao(dado);
+\item Elemento* posicao(dado);
+\item bool contem(dado);
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{destroiLista()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+destroiLista()
+ Elemento *atual, *anterior; //Variável auxiliar para caminhar.
+ inicio
+  SE (listaVazia()) ENTAO THROW(ERROLISTAVAZIA);
+  SENAO
+   atual <- _dados;    
+   ENQUANTO (atual ~= NULO) FACA 
+    //Eliminar até o fim.
+    anterior <- atual;
+    //Vou para o próximo mesmo que seja nulo.
+    atual <- atual->_proximo;
+    //Liberar primeiro a Info.
+    LIBERE(anterior->_info);
+    //Liberar o elemento que acabei de visitar.
+    LIBERE(anterior);
+   FIM ENQUANTO
+  FIM SE
+ fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile]{Trabalho Lista Encadeada}
 \lstset{language=C++,
           keywordstyle=\color{blue}\ttfamily,
           stringstyle=\color{red}\ttfamily,
