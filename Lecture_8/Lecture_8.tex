@@ -6,6 +6,8 @@
 \usepackage[brazilian]{babel}
 \usepackage{amsmath}
 \usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes.multipart,chains,arrows, positioning}
 \usepackage{multirow}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -32,14 +34,439 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \end{frame}
 }
 
-\begin{frame}[fragile]{Definições de Lista}
+\begin{frame}[fragile]{Extensões do conceito de Lista Encadeada}
 \begin{itemize}
-\item 
+\item A idéia da Lista Encadeada vista até agora é o modelo mais geral e simples;
+\item Pode ser especializada e extendida das mais variadas formas;
+\item Especializada:
+\begin{itemize}
+\item Pilhas encadeadas;
+\item Filas;
+\end{itemize}
+\item Extendida:
+\begin{itemize}
+\item Listas Duplamente Encadeadas;
+\item Listas Circulares Simples e Duplas.
+\end{itemize}
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+\end{center}
+\end{columns}
+\end{frame}
 
-\begin{frame}[fragile]{Modelagem da Lista de Vetor}
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+20  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+55 \\ \hline
+20  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+ \\ \hline
+ \\ \hline
+ \\ \hline
+4 \\ \hline
+55 \\ \hline
+20  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+ \\ \hline
+ \\ \hline
+12 \\ \hline
+4 \\ \hline
+55 \\ \hline
+20  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+ \\ \hline
+89 \\ \hline
+12 \\ \hline
+4 \\ \hline
+55 \\ \hline
+20  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Pilhas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Pilha}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de empilhar, onde o primeiro a entrar é o último a sair (LIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}| }
+\hline
+24 \\ \hline
+89 \\ \hline
+12 \\ \hline
+4 \\ \hline
+55 \\ \hline
+20  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow}  & \multicolumn{1}{|p{.5cm}|} {int} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item {\color{red} Pilha Vazia!}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow}  & \multicolumn{1}{|p{.5cm}|} {-1} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {0} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}   & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {1} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {2} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  & &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {3} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen}  & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {4} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item {\color{red} Pilha Cheia!}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Pilhas Encadeadas}
+\setbeamercovered{invisible}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item A estruturas é limitada pela memória disponível;
+\item Não é necessário definir um valor fixo para o tamanho da Pilha;
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, >=stealth, start chain]
+
+  \node[list,on chain] (H) {3};
+  \node<2-> at (2,0) (T) {\color{red}Cabeça};
+  \draw<2-> [red,<-] (H) -- (T.west);
+  \node[list,on chain] (A) [below right=of H] {melão};
+  \node<3-> (T2)[left=of A] {\color{red}Elemento};
+  \draw<3-> [red,<-] (A) -- (T2.east);
+  \node[list,on chain] (B) [below =of A] {maçã};
+  \node[list,on chain] (C) [below =of B] {uva};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) [below =of C] {null*};
+  \node <4-> (T3)[left=of D] {\color{red}Marcador Fim};
+  \draw <4-> [red,<-] (D) -- (T3.east);  
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+\end{tikzpicture}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Cabeça de PIlha}
 \lstset{language=C++,
           keywordstyle=\color{blue}\ttfamily,
           stringstyle=\color{red}\ttfamily,
@@ -51,23 +478,117 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \begin{itemize}
 \item Aspecto Estrutural:
 \begin{itemize}
-\item Necessitamos de um vetor para armazenar as informações;
-\item Necessitamos de um indicador da posição atual do ultimo elemento da lista;
+\item Necessitamos um ponteiro para o primeiro elemento da pilha;
+\item Necessitamos um inteiro para indicar quantos elementos a pilha possui.
 \end{itemize}
 \begin{lstlisting}
-constantes MAXLISTA = 100;
-
-classe Lista {
- T _dados[MAXLISTA]; // Vetor Estatico
- inteiro _ultimo;
+classe PilhaEnc {
+ Elemento *_dados;
+ inteiro _tamanho;
 };
 \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 
+\begin{frame}[fragile]{Modelagem da Elemento de Pilha}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
 
-\begin{frame}[fragile]{Trabalho Lista de Vetor}
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos um ponteiro para o próximo elemento da pilha;
+\item Necessitamos um campo do tipo da informação que vamos armazenar.
+\end{itemize}
+\begin{lstlisting}
+classe Elemento {
+ Elemento *_proximo;
+ T _info;
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Elemento de Pilha}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos um ponteiro para o próximo elemento da pilha;
+\item Necessitamos um ponteiro do tipo da informação que vamos armazenar.
+\item T necessita de um destrutor próprio, assim como a pilha (neste caso a cabeça) vai precisar de um também;
+\end{itemize}
+\begin{lstlisting}
+classe Elemento {
+ Elemento *_proximo;
+ T *_info;
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Pilha Encadeada}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Funcional:
+\begin{itemize}
+\item Temos que colocar e retirar dados da pilha;
+\item Temos que testar se a pilha está vazia;
+\item Temos que inicializar a pilha.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Pilha Encadeada}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Inicializar ou limpar:
+\begin{itemize}
+\item Pilha();
+\item \~{}Pilha();
+\item detroiPilha();
+\end{itemize}
+\item Testar se a pilha está vazia:
+\begin{itemize}
+\item bool pilhaVazia();
+\end{itemize}
+\item Colocar e retirar dados da pilha:
+\begin{itemize}
+\item empilha(T dado);
+\item T desempilha();
+\item T topo();
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{Pilha()}}
 \lstset{language=C++,
           keywordstyle=\color{blue}\ttfamily,
           stringstyle=\color{red}\ttfamily,
@@ -76,9 +597,1358 @@ classe Lista {
           basicstyle=\ttfamily\footnotesize
           }
 \begin{itemize}
-\item Implemente uma classe Lista todas as operações vistas;
+\item Inicializamos o ponteiro para nulo;
+\item Inicializamos o tamanho para ``0'';
+\end{itemize}
+\begin{lstlisting}
+Pilha()
+inicio
+  _dados = null;
+  _tamanho <- 0;
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{\~{}Pilha()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Chamamos DestroiPilha();
+\end{itemize}
+\begin{lstlisting}
+~Pilha()
+inicio
+  DestroiPilha();
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{pilhaVazia()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+bool pilhaVazia()
+inicio
+SE (_tamanho = 0) ENTAO
+ RETORNE(Verdadeiro)
+SENAO
+ RETORNE(Falso);
+fim;
+\end{lstlisting}
+\begin{itemize}
+\item Um algoritmo pilhaCheia não existe na Pilha Encadeada;\pause
+\item Verificar se houve espaço na memória para um novo elemento será responsabilidade de cada operação de adição.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{empilha(T dado)}}
+\begin{columns}
+\column{.5\textwidth}
+\setbeamercovered{invisible}
+\begin{itemize}
+\item Testamos se é possível alocar um elemento;\pause
+\item Fazemos o próximo deste novo elemento ser o topo da pilha;\pause
+\item Fazemos a cabeça de pilha apontar para o novo elemento.\pause
+\item <9-> {\color{red}Semelhanças??}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  \node<8->[list] (H) {3};
+  \node<4-7>[list] (H) {2};
+  \node<5->[list,on chain] (A) [below right=of H] {};
+
+  \node<5->[list,draw=blue!60, fill=blue!5,on chain] (N) [right=of H] {Novo}; 
+ 
+  \draw<5->[*->] let \p1 = (N.two), \p2 = (N.center) in (\x1+2,\y2) -- (A);  
+  
+  
+  \node<5->[element] (AP) [left=of A] {melão};
+  \draw<5->[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+4,\y2) -- (AP);
+  \draw<6->[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1+1,\y2+2) -- (B);
+  
+  \node<4>[list,on chain] (B) [below = of A] {};
+  \node<5->[list,on chain] (B) [below = of A] {};
+  
+  \draw<4-6>[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1,\y2) -- (B);
+  \draw<7->[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1,\y2) -- (A);
+  
+  
+  \node[list,on chain] (C) [below = of B] {};
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1+1,\y2+2) -- (C);
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) [below = of C] {null*};
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1+1,\y2+2) -- (D);
+  
+  \node[element] (BP) [left=of B] {maçã}; 
+  \draw[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+4,\y2) -- (BP);
+  \node[element] (CP) [left=of C] {uva};
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+4,\y2) -- (CP);
+ 
+\end{tikzpicture}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T desempilha()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\setbeamercovered{invisible}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Testamos se há elementos;\pause
+\item Decrementamos o tamanho;\pause
+\item Liberamos a memória do elemento;\pause
+\item Devolvemos a informação.\pause
+\item <9-> {\color{red}Semelhanças??}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  \node<5-6>[list] (H) {3};
+  \node<7->[list,on chain] (H) {2};
+
+  \node<6->[list,draw=blue!60, fill=blue!5,on chain] (V) [right=of H] {Volta}; 
+  \draw<6->[*->] let \p1 = (V.two), \p2 = (V.center) in (\x1+3,\y2) -- (AP);  
+    
+  \node<5-7>[list,on chain] (A) [below right=of H] {};
+  \draw<5-7>[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+4,\y2) -- (AP);
+  \node<5-8>[element] (AP) [left=of A] {melão};
+  \draw<5-7>[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1+1,\y2+2) -- (B);
+
+  \node<6-8>[list,draw=blue!60, fill=blue!5,on chain] (S) [right=of A] {\nodepart{two} Saiu}; 
+  \draw<6-8>[*->] let \p1 = (S.one), \p2 = (S.center) in (\x1+4,\y2) -- (A);  
+
+  
+  \node<7->[list,on chain] (B) [below=of A] {};
+  \node<5-6>[list,on chain] (B) [below=of A]{};
+  
+  \draw<7->[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1,\y2+2) -- (B);
+  \draw<5-6>[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1,\y2+2) -- (A);
+  
+  
+  \node[list,on chain] (C)[below=of B] {};
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1+1,\y2+2) -- (C);
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) [below=of C] {null*};
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1+1,\y2+2) -- (D);
+  
+  \node[element] (BP) [left=of B] {maçã}; 
+  \draw[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+4,\y2) -- (BP);
+  \node[element] (CP) [left=of C] {uva};
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+4,\y2) -- (CP);
+ 
+\end{tikzpicture}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Trabalho Pilha Encadeada}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Implemente uma classe Pilha todas as operações vistas;
+\item Implemente a pilha usando Templates;
+\item Use as melhores práticas de orientação a objetos;
+\item Documente todas as classes, métodos e atributos;
+\item Aplique os testes unitários disponíveis no moodle da disciplina para validar sua estrutura de dados;
+\item Entregue até a data definida no moodle.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileiramento, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileiramento, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+ & & & & &\\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileiramento, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+ &  &  &  &  & 20 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileiramento, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+ &  &  &  & 55 & 20 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileiramento, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+ &  &  & 4 & 55 & 20 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileiramento, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+ &  & 12 & 4 & 55 & 20 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileiramento, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+ & 89 & 12 & 4 & 55 & 20 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileiramento, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+24 & 89 & 12 & 4 & 55 & 20 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileiramento, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+& 24 & 89 & 12 & 4 & 55 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileiramento, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+& & 24 & 89 & 12 & 4  \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Fila}
+É uma estrutura de dados cujo funcionamento é inspirado no conceito “natural” de enfileiramento, onde o primeiro a entrar é o primeiro a sair (FIFO).
+\end{block}
+\column{.5\textwidth}
+\begin{center}
+{\rowcolors{1}{SpringGreen}{GreenYellow}
+\begin{tabular}{ |p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}|p{.5cm}| }
+\hline
+& & 24 & 89 & 12 & 4  \\ \hline
+\end{tabular}
+}
+\end{center}
+\begin{itemize}
+\item Duas operações:
+\begin{itemize}
+\item {\color{red}Incluir no Fim};
+\item {\color{red}Retirar do Inicio};
+\end{itemize}
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conceito de Filas}
+\begin{itemize}
+\item É importante para gerência de dados/processos por ordem cronológica:
+\begin{itemize}
+\item Fila de impressão em uma impressora de rede;
+\item Fila de pedidos de uma expedição ou tele-entrega;
+\end{itemize}
+\item É importante para simulação de processos sequenciais:
+\begin{itemize}
+\item chão de fábrica: fila de camisetas a serem estampadas;
+\item comércio: simulação de fluxo de um caixa de supermercado;
+\item tráfego: simulação de um cruzamento com um semáforo.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Filas Usando Vetores}
+\begin{columns}
+\column{.5\textwidth}
+\begin{itemize}
+\item Vetores possuem um espaço limitado para armazenar dados;
+\item Necessitamos definir um espaço grande o suficiente para a nossa pilha;
+\item Necessitamos de um indicador de qual elemento do vetor é o atual topo da pilha.
+\item Incluímos sempre no fim.
+\item {\color{red}Fila Cheia!}
+\end{itemize}
+\column{.5\textwidth}
+\begin{center}
+\begin{tabular}{| p{.5cm} |p{.5cm}c }
+\cline{1-1}
+ \cellcolor{SpringGreen} 24 & &\\ \cline{1-1}
+\cellcolor{GreenYellow}  89& &\\ \cline{1-1}
+\cellcolor{SpringGreen}  12& &\\ \cline{1-1}
+\cellcolor{GreenYellow}  4 & &\\ \cline{1-1}
+\cellcolor{SpringGreen} 55 & &\\ \cline{1-2}
+\cellcolor{GreenYellow} 20 & \multicolumn{1}{|p{.5cm}|} {5} & \\ \cline{1-2}
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem de Fila Encadeada}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    queue/.style={rectangle split, rectangle split parts=3,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  \node[queue,on chain] (H) {3};
+  \node[list,on chain] (A) [below=of H] {};
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \node[list,on chain] (B) {};
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \node[list,on chain] (C) {};
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+  \draw[*->] let \p1 = (H.three), \p2 = (H.center) in (\x1,\y2) -- (D);
+  \node[element] (AP) [below=of A] {melão};
+  \draw[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node[element] (BP) [below=of B] {maçã};
+  \draw[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node[element] (CP) [below=of C] {uva};
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+ 
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{Modelagem da Cabeça de Fila Encadeada}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos um ponteiro para o primeiro elemento da fila;
+\item Necessitamos um ponteiro para o Ultimo elemento da fila;
+\item Necessitamos um inteiro para indicar quantos elementos a fila possui.
+\end{itemize}
+\begin{lstlisting}
+classe Lista {
+ Elemento *_dados;
+ Elemento *_fim;
+ inteiro _tamanho;
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{Fila()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Inicializamos o ponteiro para \_dados nulo;
+\item Inicializamos o ponteiro para \_fim nulo;
+\item Inicializamos o tamanho para ``0'';
+\end{itemize}
+\begin{lstlisting}
+Fila()
+inicio
+  _dados = null;
+  _fim = null;
+  _tamanho <- 0;
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adiciona(T dado)}}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    queue/.style={rectangle split, rectangle split parts=3,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  %cabeca
+  \node<6->[queue] (H) {3};
+  \node<1-5>[queue] (H) {2};
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \draw<5->[*->] let \p1 = (H.three), \p2 = (H.center) in (\x1,\y2) -- (C);  
+  \draw<1-4>[*->] let \p1 = (H.three), \p2 = (H.center) in (\x1,\y2) -- (B);
+
+  %novo
+  \node<2->[list,draw=blue!60, fill=blue!5,on chain] (N) [above right=of H] {Novo}; 
+  \draw<2->[*->] let \p1 = (N.two), \p2 = (N.center) in (\x1+2,\y2+2) -- (C);  
+  
+  %primeiro elemento
+  \node[list,on chain] (A) [below=of H] {};
+  \node[list,on chain] (B) {};
+  \node<2->[list,on chain] (C) {};
+  %dados 
+  \draw[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node[element] (AP) [below=of A] {melão};
+  %ponteiros
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  
+  
+   %segundo elemento
+  %dados
+  \draw[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node[element] (BP) [below=of B] {maçã}; 
+  %ponteiro
+  \draw<4->[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \draw<1-3>[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1+2,\y2-2) .. controls +(north:20mm) and +(up:10mm)  .. (D.north);
+  
+  %terceiro elemento  
+  
+  %dados
+  \node<2->[element] (CP) [below=of C] {uva};
+  \draw<2->[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+   %null pointer
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) [right=of C]{null*};
+  %ponteiro
+  \draw<3->[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+  
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+\item <7>{\color{red}Semelhanças??}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adiciona(T dado)} - Caso Especial Fila Vazia}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    queue/.style={rectangle split, rectangle split parts=3,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  %cabeca
+  \node<1-5>[queue] (H) {0};
+  \node<6->[queue] (H) {1};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) [below right=of H]{null*};
+    %primeiro elemento
+  \node<2->[list,on chain] (A) [below=of H] {};
+  %dados 
+  \draw<2->[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node<2->[element] (AP) [below=of A] {melão};
+  \draw<1-3>[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1,\y2) -- (D);
+  \draw<1-4>[*->] let \p1 = (H.three), \p2 = (H.center) in (\x1,\y2) -- (D);
+  \draw<3->[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (D);
+  \draw<4->[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1,\y2) -- (A);
+  \draw<5->[*->] let \p1 = (H.three), \p2 = (H.center) in (\x1,\y2) -- (A);
+  %novo
+  \node<2->[list,draw=blue!60, fill=blue!5,on chain] (N) [left=of A] {Novo}; 
+  \draw<2->[*->] let \p1 = (N.two), \p2 = (N.center) in (\x1,\y2) -- (A);  
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adiciona(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaNaPosicao(T dado, int posicao)
+ Elemento *novo; // auxiliar.
+ inicio
+  novo <- aloque(Elemento);
+  SE ( novo == NULO) THROW(ERROFILACHEIA);
+   SE filaVazia() ENTAO
+    _dados <- novo
+   SENAO
+    _fim->_proximo <- novo;
+   FIM SE
+   novo->_proximo <- NULO;
+   novo->_info <- dado;
+   _fim <- novo;
+   _tamanho <- _tamanho + 1;
+  FIM SE
+fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    queue/.style={rectangle split, rectangle split parts=3,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  \node<1-2>[queue] (H) {3};
+  \node<3->[queue,on chain] (H) {2};
+
+  \node<2-4>[list,draw=blue!60, fill=blue!5,on chain] (S) [below left=of H] {Saiu}; 
+  \draw<2-4>[*->] let \p1 = (S.two), \p2 = (S.center) in (\x1,\y2) -- (A);  
+  
+  \node<2->[list,draw=blue!60, fill=blue!5,on chain] (V) [left=of AP] {Volta}; 
+  \draw<2->[*->] let \p1 = (V.two), \p2 = (V.center) in (\x1,\y2) -- (AP);  
+  
+  \node<1-3>[list,on chain] (A) [below=of H] {};
+  \draw<1-3>[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node<1-4>[element] (AP) [below=of A] {melão};
+  \draw<1-3>[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  
+  \node<3->[list,on chain] (B) [below right=of H] {};
+  \node<1-2>[list,on chain] (B) {};
+  
+  \draw<3->[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (B);
+  \draw<1-2>[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  
+  
+  \node[list,on chain] (C) {};
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+  \draw<1->[*->] let \p1 = (H.three), \p2 = (H.center) in (\x1+2,\y2+2) -- (C);
+  
+  \node[element] (BP) [below=of B] {maçã}; 
+  \draw[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node[element] (CP) [below=of C] {uva};
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+ 
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+\item <5-> {\color{red}Semelhanças??}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Método \textit{T retira()} - Caso Especial Fila Unitária}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    queue/.style={rectangle split, rectangle split parts=3,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  %cabeca
+  \node[queue] (H) {0};
+  \node[queue] (H) {1};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) [below right=of H]{null*};
+    %primeiro elemento
+  \node<1-2>[list,on chain] (A) [below=of H] {};
+  %dados 
+  \draw<1-2>[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node[element] (AP) [below=of A] {melão};
+  \draw<4->[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1,\y2) -- (D);
+  \draw<4->[*->] let \p1 = (H.three), \p2 = (H.center) in (\x1,\y2) -- (D);
+  \draw<1-2>[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (D);
+  \draw<1-3>[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1,\y2) -- (A);
+  \draw<1-3>[*->] let \p1 = (H.three), \p2 = (H.center) in (\x1,\y2) -- (A);
+  %novo
+  \node<2->[list,draw=blue!60, fill=blue!5,on chain] (N) [left=of AP] {Volta}; 
+  \draw<2->[*->] let \p1 = (N.two), \p2 = (N.center) in (\x1,\y2) -- (AP);  
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{Método \textit{T retira()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+T retira()
+ Elemento *saiu; //Variável auxiliar elemento.
+ T *volta; //Variável auxiliar tipo T.
+	início
+		SE (listaVazia()) ENTAO
+		  THROW(ERROLISTAVAZIA);
+		SENAO
+		  saiu <- _dados;
+		  volta <- saiu->_info;
+		  _dados <- saiu->_próximo;
+          //Se SAIU for o único, próximo é NULO e está certo.
+          SE (_tamanho = 1) ENTAO
+           //Fila unitária: devo anular o _fim também.
+           _fim <- NULO;
+          FIM SE
+		  _tamanho <- _tamanho - 1;
+		  LIBERE(saiu);
+		  RETORNE(volta);
+		FIM SE
+	fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Trabalho Fila Encadeada}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Implemente uma classe Fila todas as operações vistas;
+\item Implemente a fila usando Templates;
+\item Use as melhores práticas de orientação a objetos;
+\item Documente todas as classes, métodos e atributos;
+\item Aplique os testes unitários disponíveis no moodle da disciplina para validar sua estrutura de dados;
+\item Entregue até a data definida no moodle.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Listas Duplamente Encadeadas}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item A Lista Encadeada e a Fila Encadeada possuem a desvantagem de somente podermos caminhar em uma direção:
+\begin{itemize}
+\item Vimos que para olhar um elemento pelo qual ``acabamos de passar'' precisamos de uma variável auxiliar ``anterior'';
+\item Para olhar outros elementos ainda anteriores não temos nenhum meio, a não ser começar de novo.
+\end{itemize}
+\item A Lista Duplamente Encadeada é uma estrutura de lista que permite deslocamento em ambos os sentidos:
+\begin{itemize}
+\item Útil para representar conjuntos de eventos ou objetos a serem percorridos em dois sentidos;
+\item Útil também quando realizamos uma busca aproximada e nos movemos para a frente e para trás.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Lista Duplamente Encadeada}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal},
+    double/.style={rectangle split, rectangle split parts=3,
+    draw=green!60, fill=green!5, rectangle split horizontal},  
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  \node[list,on chain] (H) {3};
+  \node[double,on chain] (A) [below=of H] {};
+  \node[double,on chain] (B) {};
+  \node[double,on chain] (C) {};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D2)[left=of A] {null*};
+  
+  
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \draw[*->] let \p1 = (A.three), \p2 = (A.center) in (\x1,\y2+2) -- (B);
+  \draw[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+4,\y2-2) -- (D2);
+  \draw[*->] let \p1 = (B.three), \p2 = (B.center) in (\x1,\y2+2) -- (C);
+  \draw[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+4,\y2-2) -- (A);
+  \draw[*->] let \p1 = (C.three), \p2 = (C.center) in (\x1,\y2+2) -- (D);
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+4,\y2-2) -- (B);
+
+
+  \node[element] (AP) [below=of A] {melão};
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node[element] (BP) [below=of B] {maçã};
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node[element] (CP) [below=of C] {uva};
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+ 
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{Modelagem da Cabeça de Lista Dupla}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos um ponteiro para o primeiro elemento da lista;
+\item Necessitamos um inteiro para indicar quantos elementos a lista possui.
+\end{itemize}
+\begin{lstlisting}
+classe ListaDupla {
+ ElementoDuplo *_dados;
+ inteiro _tamanho;
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Elemento de Lista Dupla}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Estrutural:
+\begin{itemize}
+\item Necessitamos um ponteiro para o próximo elemento;
+\item Necessitamos um ponteiro para o elemento anterior;
+\item Necessitamos um ponteiro do tipo da informação que vamos armazenar.
+\item T necessita de um destrutor próprio, assim como a lista (neste caso a cabeça) vai precisar de um também;
+\end{itemize}
+\begin{lstlisting}
+classe ElementoDuplo {
+ Elemento *_proximo;
+ Elemento *_anterior;
+ T *_info;
+};
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Lista Duplamente Encadeada}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Aspecto Funcional:
+\begin{itemize}
+\item Temos que colocar e retirar dados da lista;
+\item Temos que testar se a lista está vazia (dentre outros testes);
+\item Temos que inicializar a lista e garantir a ordem de seus elementos.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Lista Duplamente Encadeada}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Inicializar ou limpar:
+\begin{itemize}
+\item ListaDupla();
+\item limpaListaDupla();
+\item \~{}ListaDupla();
+\end{itemize}
+\item Testar se a lista está vazia ou cheia e outros testes:
+\begin{itemize}
+\item bool listaVaziaDupla();
+\item int posicaoDupla(dado);
+\item bool contemDupla(dado);
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem da Lista Duplamente Encadeada}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Colocar e retirar dados da lista:
+\begin{itemize}
+\item adicionaDupla(T dado);
+\item adicionaNoInicioDupla(T dado);
+\item adicionaNaPosicaoDupla(T dado, int posicao);
+\item adicionaEmOrdemDupla(T dado);
+\item T retiraDupla();
+\item T retiraDoInicioDupla();
+\item T retiraDaPosicaoDupla(int posicao);
+\item T retiraEspecificoDupla(dado);
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{ListaDupla()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Inicializamos o ponteiro para nulo;
+\item Inicializamos o tamanho para ``0'';
+\end{itemize}
+\begin{lstlisting}
+ListaDupla()
+inicio
+  _dados = null;
+  _tamanho <- 0;
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{\~{}ListaDupla()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Chamamos DestroiLista();
+\end{itemize}
+\begin{lstlisting}
+~ListaDupla()
+inicio
+  DestroiListaDupla();
+fim;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{listaVaziaDupla()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+bool listaVaziaDupla()
+inicio
+SE (_tamanho = 0) ENTAO
+ RETORNE(Verdadeiro)
+SENAO
+ RETORNE(Falso);
+fim;
+\end{lstlisting}
+\begin{itemize}
+\item Um algoritmo ListaCheia não existe na Lista Duplamente Encadeada;\pause
+\item Verificar se houve espaço na memória para um novo elemento será responsabilidade de cada operação de adição.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicioDupla(T dado)}}
+\setbeamercovered{invisible}
+\begin{itemize}
+\item Testamos se é possível alocar um elemento;\pause
+\item Fazemos o próximo deste novo elemento ser o primeiro;\pause
+\item Fazemos a cabeça de lista apontar para o novo elemento.\pause
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal},
+    double/.style={rectangle split, rectangle split parts=3,
+    draw=green!60, fill=green!5, rectangle split horizontal},  
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  \node<10>[list] (H) {3};
+  \node<4-9>[list] (H) {2};
+  \node<5->[double,on chain] (A) [below=of H] {};
+  \node[double,on chain] (B) [below right=of H]{};
+  \node[double,on chain] (C) {};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D2)[left=of A] {null*};
+
+  \node<5->[list,draw=blue!60, fill=blue!5,on chain] (N) [left=of H] {Novo}; 
+  \draw<5->[*->] let \p1 = (N.two), \p2 = (N.center) in (\x1,\y2) -- (A);  
+  
+  
+  \draw<9->[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \draw<-8>[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (B);
+  \draw<6->[*->] let \p1 = (A.three), \p2 = (A.center) in (\x1,\y2+2) -- (B);
+  \draw<7->[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+4,\y2-2) -- (D2);
+  \draw[*->] let \p1 = (B.three), \p2 = (B.center) in (\x1,\y2+2) -- (C);
+  \draw<8->[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+4,\y2-2) -- (A);
+  \draw<-4>[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+4,\y2-2) -- (D2);
+  \draw[*->] let \p1 = (C.three), \p2 = (C.center) in (\x1,\y2+2) -- (D);
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+4,\y2-2) -- (B);
+  \draw<5-7>[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+2,\y2) .. controls +(south:40mm) and +(down:25mm)  .. (D2.south);
+
+
+  \node<5->[element] (AP) [below=of A] {melão};
+  \draw<5->[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node[element] (BP) [below=of B] {maçã};
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node[element] (CP) [below=of C] {uva};
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+ 
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNoInicioDupla(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{lstlisting}
+adicionaNoInicioDupla(T dado)
+ ElementoDuplo *novo; //Variável auxiliar.
+ início
+  novo <- aloque(ElementoDuplo);
+  SE (novo = NULO) ENTAO
+   THROW(ERROLISTACHEIA);
+  SENAO
+   novo->_proximo <- _dados;
+   novo->_anterior <- NULO;
+   novo->_info <- dado;
+   _dados <- novo;
+   SE (novo->_proximo ~= NULO) ENTAO
+    novo->_proximo->_anterior <- novo;
+   FIM SE;
+   _tamanho <- _tamanho + 1;
+  FIM SE
+  fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicioDupla()}}
+\setbeamercovered{invisible}
+\begin{itemize}
+\item Testamos se há elementos;\pause
+\item Decrementamos o tamanho;\pause
+\item Liberamos a memória do elemento;\pause
+\item Devolvemos a informação.\pause
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal},
+    double/.style={rectangle split, rectangle split parts=3,
+    draw=green!60, fill=green!5, rectangle split horizontal},  
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  \node[list] (H) {3};
+  \node<10->[list] (H) {2};
+  \node<-8>[double,on chain] (A) [below=of H] {};
+  \node[double,on chain] (B) [below right=of H]{};
+  \node[double,on chain] (C) {};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D) {null*};
+  \node[on chain,draw=red!60, fill=red!5,inner sep=6pt] (D2)[left=of A] {null*};
+
+  \node<6->[list,draw=blue!60, fill=blue!5,on chain] (N) [left=of H] {Saiu}; 
+  \draw<6->[*->] let \p1 = (N.two), \p2 = (N.center) in (\x1,\y2) -- (A);  
+  \node<6->[list,draw=blue!60, fill=blue!5,on chain] (V) [left=of AP] {Volta}; 
+  \draw<6->[*->] let \p1 = (V.two), \p2 = (V.center) in (\x1,\y2) -- (AP);  
+  
+  
+  \draw<-7>[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \draw<8->[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (B);
+  \draw<-8>[*->] let \p1 = (A.three), \p2 = (A.center) in (\x1,\y2+2) -- (B);
+  \draw<-8>[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+4,\y2-2) -- (D2);
+  \draw[*->] let \p1 = (B.three), \p2 = (B.center) in (\x1,\y2+2) -- (C);
+  \draw<-6>[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+4,\y2-2) -- (A);
+  \draw<9->[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+4,\y2-2) -- (D2);
+  \draw[*->] let \p1 = (C.three), \p2 = (C.center) in (\x1,\y2+2) -- (D);
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+4,\y2-2) -- (B);
+  \draw<7-8>[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+2,\y2) .. controls +(south:40mm) and +(down:25mm)  .. (D2.south);
+
+
+  \node[element] (AP) [below=of A] {melão};
+  \draw<-8>[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node[element] (BP) [below=of B] {maçã};
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node[element] (CP) [below=of C] {uva};
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+ 
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDoInicioDupla()}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+T retiraDoInicioDupla()
+ ElementoDuplo *saiu; //Variável auxiliar elemento.
+ T *volta; //Variável auxiliar tipo T.
+	início
+		SE (listaVaziaDupla()) ENTAO
+		  THROW(ERROLISTAVAZIA);
+		SENAO
+		  saiu <- _dados;
+		  volta <- saiu->_info;
+		  _dados <- saiu->_proximo;
+		  SE (_dados ~= NULO) ENTAO
+			dados->_anterior <- NULO;
+		  FIM SE
+		  _tamanho <- _tamanho - 1;
+		  LIBERE(saiu);
+		  RETORNE(volta);
+		FIM SE
+	fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicaoDupla(T dado, int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Praticamente idêntico à lista encadeada;
+\item Procedimento:
+\begin{itemize}
+\item Caminhamos até a posição;
+\item Adicionamos o novo dado na posição;
+\item Tratamos o caso especial;
+\item Incrementamos o tamanho.
+\end{itemize}
+\item Parâmetros:
+\begin{itemize}
+\item O dado a ser inserido;
+\item A posição onde inserir;
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaNaPosicaoDupla(T dado, int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+adicionaNaPosicaoDupla(T dado, int posicao)
+ ElementoDuplo *novo, *anterior; // auxiliares.
+ inicio
+  SE (posicao > _tamanho + 1) ENTAO THROW(ERROPOSICAO);
+  SENAO
+   SE (posicao = 1) ENTAO RETORNE(adicionaNoInícioDupla(info));
+   SENAO
+    novo <- aloque(ElementoDuplo); 
+    SE (novo = NULO) ENTÃO THROW(ERROLISTACHEIA);
+    SENAO
+     anterior <- _dados;
+     REPITA (posicao - 2) VEZES anterior <- anterior->_proximo;
+     novo->_proximo <- anterior->_proximo;
+     SE (novo->_proximo ~= NULO) ENTAO  
+      novo->_proximo->_anterior <- novo; 
+     novo->_info <- info;
+     anterior->_proximo <- novo;
+     _tamanho <- _tamanho + 1;
+    FIM SE
+   FIM SE
+  FIM SE
+fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDaPosicaoDupla(int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Praticamente idêntico à lista encadeada;
+\item Procedimento:
+\begin{itemize}
+\item Caminhamos até a posição;
+\item Retiramos o novo dado na posição;
+\item Tratamos o caso especial;
+\item Decrementamos o tamanho.
+\end{itemize}
+\item Parâmetros:
+\begin{itemize}
+\item A posição onde retirar;
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{T retiraDaPosicaoDupla(int posicao)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          escapeinside={(*@}{@*)},
+          basicstyle=\ttfamily\scriptsize
+          }
+\begin{lstlisting}
+T retiraDaPosicaoDupla(int posicao)
+ ElementoDuplo *anterior, *eliminar; //Variáveis elemento.
+ T *volta; //Variável tipo T.
+ inicio
+  SE (posicao > _tamanho ) ENTAO THROW(ERROPOSICAO);
+  SENAO
+   SE (posicao = 1) ENTAO RETORNE(retiraDoInicioDupla());
+   SENAO
+    anterior <- _dados;
+    REPITA (posicao - 2) VEZES 
+      anterior <- anterior->_proximo;
+    eliminar <- anterior->_proximo;
+    volta <- eliminar->_info;
+    anterior->_proximo <- eliminar->_proximo;
+    SE eliminar->_proximo ~= NULO ENTAO
+     eliminar->_proximo->_anterior <- anterior;
+    _tamanho <- _tamanho - 1;
+    LIBERE(eliminar);  RETORNE(volta);
+   FIM SE
+  FIM SE
+ fim;
+(*@  \textcolor{red}{}  @*)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Método \textit{adicionaEmOrdemDupla(T dado)}}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Idêntico à lista encadeada;
+\item Procedimento:
+\begin{itemize}
+\item Necessitamos de uma função para comparar os dados ``>'';
+\item Procuramos pela posição onde inserir comparando dados;
+\item Chamamos adicionaNaPosiçãoDupla().
+\end{itemize}
+\item Parâmetros:
+\begin{itemize}
+\item O dado a ser inserido;
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Por conta do aluno:}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Operações de inclusão e exclusão:
+\begin{itemize}
+\item AdicionaDupla(dado);
+\item RetiraDupla();
+\item RetiraEspecíficoDupla(dado);
+\end{itemize}
+\item Operações - inicializar ou limpar:
+\begin{itemize}
+\item DestróiListaDupla();
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Trabalho Lista Duplamente Encadeada}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Implemente uma classe ListaDupla todas as operações vistas;
 \item Implemente a lista usando Templates;
-\item Implemente a lista com um numero de elementos variável definido na instanciação;
 \item Use as melhores práticas de orientação a objetos;
 \item Documente todas as classes, métodos e atributos;
 \item Aplique os testes unitários disponíveis no moodle da disciplina para validar sua estrutura de dados;
