@@ -6,12 +6,14 @@
 \usepackage[brazilian]{babel}
 \usepackage{amsmath}
 \usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes.multipart,chains,arrows, positioning, automata}
 \usepackage{multirow}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{lstlinebgrd}
 \usepackage{graphicx}
-\author{Lista Circular}
+\author{Listas Circulares}
 \title{Estruturas de Dados}
 %\setbeamercovered{transparent}
 \setbeamertemplate{navigation symbols}{}
@@ -32,14 +34,7 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \end{frame}
 }
 
-\begin{frame}[fragile]{Definições de Lista}
-\begin{itemize}
-\item 
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]{Modelagem da Lista de Vetor}
+\begin{frame}[fragile]{Para que servem listas circulares?}
 \lstset{language=C++,
           keywordstyle=\color{blue}\ttfamily,
           stringstyle=\color{red}\ttfamily,
@@ -47,27 +42,134 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
           breaklines=true,
           basicstyle=\ttfamily\footnotesize
           }
-
 \begin{itemize}
-\item Aspecto Estrutural:
-\begin{itemize}
-\item Necessitamos de um vetor para armazenar as informações;
-\item Necessitamos de um indicador da posição atual do ultimo elemento da lista;
+\item Modelagem e planejamento de rotas circulares;
+\item Caminho de retorno é diferente do de ida;
+\item Exemplo: rotas aéreas tipo volta-ao-mundo;
+\item Útil em sistemas de planejamento de itinerário e de reserva global de passagens como Amadeus Global Travel Distribution System
 \end{itemize}
-\begin{lstlisting}
-constantes MAXLISTA = 100;
+\end{frame}
 
-classe Lista {
- T _dados[MAXLISTA]; // Vetor Estatico
- inteiro _ultimo;
-};
-\end{lstlisting}
+\begin{frame}[fragile]{Para que servem listas circulares?}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Escalonamento de Processos (Process Scheduling) em kernels de sistemas operacionais multitarefa preemptivos;
+\item Exemplo: método round-robin de escalonamento de processos com fatia de tempo constante por processo;\pause
+\item Curiosidade: tradução de round-robin é sabiá-cíclico.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Para que servem listas circulares?}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Sistemas de impressão que controlam várias impressoras ;
+\item Realizam escalonamento de impressoras (round-robin printing queue) por disponibilidade para impressão de documentos em uma fila de impressão cíclica única para várias impressoras.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem de Lista Encadeada Circular}
+\setbeamercovered{invisible}
+\begin{itemize}
+\item Último elemento conecta ao primeiro!
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+  \node[list,on chain] (H) {3};
+  \node[list,on chain] (A) [below=of H] {};
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \node[list,on chain] (B) {};
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \node[list,on chain] (C) {};
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \draw[*->]let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2+2) [out=-50, in=-150, looseness = 3] to (A.west); 
+  \node[element] (AP) [below=of A] {melão};
+  \draw[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node[element] (BP) [below=of B] {maçã};
+  \draw[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node[element] (CP) [below=of C] {uva};
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+ \end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Lista Encadeada Circular Unitária}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,
+    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+
+  \node[list,on chain] (H) {3};
+  \node[list,on chain] (A) [below=of H] {};
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (A);
+  \draw[*->]let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2+2) [out=-50, in=-150, looseness = 4] to (A.west); 
+  \node[element] (AP) [below=of A] {melão};
+  \draw[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+ \end{tikzpicture}\pause
+\end{center}
+\begin{itemize}
+\item Quais operações têm algoritmos diferentes?\pause
+\item Qual é a posição mais indicada para inserir quando a posição não importa ?
 \end{itemize}
 \end{frame}
 
 
+\begin{frame}[fragile]{Lista Encadeada Circular - Solução Fácil}
+\setbeamercovered{invisible}
+\begin{center}
+\begin{tikzpicture}[list/.style={rectangle split, rectangle split parts=2,    draw=green!60, fill=green!5, rectangle split horizontal}, 
+    element/.style={rectangle, draw=yellow!60, fill=yellow!5,},    
+    >=stealth, start chain]
+  \node[list,on chain] (H) {3};
+  \node[list,on chain,draw=blue!60, fill=blue!5] (D) [below=of H] {};
+  \node[list,on chain] (A) {};  
+  \draw[*->] let \p1 = (H.two), \p2 = (H.center) in (\x1+2,\y2+2) -- (D);
+  \node[list,on chain] (B) {};
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \node[list,on chain] (C) {};
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
 
-\begin{frame}[fragile]{Trabalho Lista de Vetor}
+  \draw[*->] let \p1 = (D.two), \p2 = (D.center) in (\x1,\y2) -- (A);
+  \node[on chain,draw=purple!60, fill=purple!5,inner sep=6pt] (E) [below =of D] {null*};
+  \draw[*->] let \p1 = (D.one), \p2 = (D.center) in (\x1+2,\y2+2) -- (E);
+  \draw[*->]let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2+2) [out=-50, in=-150, looseness = 2] to (D.west); 
+  \node[element] (AP) [below=of A] {melão};
+  \draw[*->] let \p1 = (A.one), \p2 = (A.center) in (\x1+2,\y2+2) -- (AP);
+  \node[element] (BP) [below=of B] {maçã};
+  \draw[*->] let \p1 = (B.one), \p2 = (B.center) in (\x1+2,\y2+2) -- (BP);
+  \node[element] (CP) [below=of C] {uva};
+  \draw[*->] let \p1 = (C.one), \p2 = (C.center) in (\x1+2,\y2+2) -- (CP);
+ \end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{Lista Encadeada Circular - Solução Fácil}
+\setbeamercovered{invisible}
+\begin{itemize}
+\item Alternativa para evitar mudança nos algoritmos;
+\item Nodo-sentinela funciona sempre como nodo sem informações anexado à cabeça de lista;
+\item A lista é criada posuindo o nodo sentinela;
+\item Os algoritmos não se modificam.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Trabalho Lista Encadeada Circular}
 \lstset{language=C++,
           keywordstyle=\color{blue}\ttfamily,
           stringstyle=\color{red}\ttfamily,
@@ -78,7 +180,33 @@ classe Lista {
 \begin{itemize}
 \item Implemente uma classe Lista todas as operações vistas;
 \item Implemente a lista usando Templates;
-\item Implemente a lista com um numero de elementos variável definido na instanciação;
+\item Use as melhores práticas de orientação a objetos;
+\item Documente todas as classes, métodos e atributos;
+\item Aplique os testes unitários disponíveis no moodle da disciplina para validar sua estrutura de dados;
+\item Entregue até a data definida no moodle.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Lista Duplamente Encadeada Circular}
+\setbeamercovered{invisible}
+\begin{itemize}
+\item É muito simples. Ao invés de apontar o inicio e o fim pra null*, apontamos um para o outro;
+\item Não opecisa de sentinela;
+\item Basta uma modificação no adicionaNoInicio e no retiraDoInicio;
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Trabalho Lista Duplamente Encadeada Circular}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Implemente uma classe Lista todas as operações vistas;
+\item Implemente a lista usando Templates;
 \item Use as melhores práticas de orientação a objetos;
 \item Documente todas as classes, métodos e atributos;
 \item Aplique os testes unitários disponíveis no moodle da disciplina para validar sua estrutura de dados;
