@@ -13,7 +13,7 @@
 \usepackage{amssymb}
 \usepackage{lstlinebgrd}
 \usepackage{graphicx}
-\author{}
+\author{Trabalho de Implementação I \\ Simulação de um Supermercado}
 \title{Estruturas de Dados}
 %\setbeamercovered{transparent}
 \setbeamertemplate{navigation symbols}{}
@@ -34,7 +34,7 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
 \end{frame}
 }
 
-\begin{frame}[fragile]{}
+\begin{frame}[fragile]{Modelagem e Simulação de um Supermercado}
 \lstset{language=C++,
           keywordstyle=\color{blue}\ttfamily,
           stringstyle=\color{red}\ttfamily,
@@ -43,13 +43,15 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
           basicstyle=\ttfamily\footnotesize
           }
 \begin{itemize}
-\item 
+\item Esta simulação vai permitir:
+\begin{itemize}
+\item Ao dono de um supermercado gerar estatísticas que permitam ver qual o melhor numero de caixas de supermercado para a freqüência de chegada de clientes do seu ponto;
+\item Ao dono do supermercado realizar cálculos dos custos de operação do supermercado em função do faturamento gerado por cada caixa.
+\end{itemize}
 \end{itemize}
 \end{frame}
 
-
-
-\begin{frame}[fragile]{Trabalho }
+\begin{frame}[fragile]{Modelo básico:}
 \lstset{language=C++,
           keywordstyle=\color{blue}\ttfamily,
           stringstyle=\color{red}\ttfamily,
@@ -58,14 +60,299 @@ height=\paperheight]{../reusable_images/fundo_capa.png}}
           basicstyle=\ttfamily\footnotesize
           }
 \begin{itemize}
-\item Implemente uma classe Lista todas as operações vistas;
-\item Implemente a lista usando Templates;
-\item Use as melhores práticas de orientação a objetos;
-\item Documente todas as classes, métodos e atributos;
-\item Aplique os testes unitários disponíveis no moodle da disciplina para validar sua estrutura de dados;
-\item Entregue até a data definida no moodle.
+\item O modelo do supermercado terá 3 tipos de dados básicos (objetos):
+\begin{itemize}
+\item O Cliente - Um cliente chega no supermercado num determinado momento, compra uma quantidade de coisas, podendo pagar com cheque ou dinheiro;
+\item O Caixa de Supermercado - O caixa de supermercado possui uma Fila de Clientes e características como eficiência, etc;
+\item O Supermercado - Um Supermercado possui um determinado número de caixas, que são diferentes quanto à sua eficiência e um Relógio interno, além da capacidade de calcular as suas estatísticas.
+\end{itemize}
 \end{itemize}
 \end{frame}
+
+ \begin{frame}[fragile]{Forma básica de funcionamento do sistema}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item No sistema o usuário entra com os seguintes dados:
+\begin{itemize}
+\item O número de caixas do supermercado, indicando para cada caixa se ele é eficiente, médio ou ruim;
+\item O tempo médio de chegada, em segundos, de novos clientes no supermercado;
+\item Quanto tempo de operação, em horas, do supermercado o usuário deseja simular (tempo total de simulação);
+\item Estes dados podem ser digitados em uma tela de entrada de dados ou então lidos de um arquivo de configuração. Implemente ambas as opções. O formato do arquivo de configuração está descrito abaixo.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+ \begin{frame}[fragile]{Forma básica de funcionamento do sistema}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item O Sistema proverá ao usuário os seguintes dados:
+\begin{itemize}
+\item O faturamento total do supermercado no período.
+\item O faturamento médio por caixa.
+\item O faturamento real de cada caixa.
+\item O lucro por caixa, descontando-se o salario deste caixa no período compreendido pela simulação. Ignore outros custos, como luz elétrica, manutenção do terminal de ponto de venda, etc.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+ \begin{frame}[fragile]{Forma básica de funcionamento do sistema}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item O tempo médio de permanência de um cliente na fila.
+\item O número de clientes que desistiram porque a fila estava muito longa.
+\item O faturamento que deixou de ser realizado em função dos clientes que desistiram.
+\item O Nome do Supermercado lido do arquivo de configuração deve aparecer na tela quando o sistema terminar a simulação.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Forma básica de funcionamento do Modelo}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item O supermercado funcionará da seguinte forma:
+\begin{itemize}
+\item A intervalos randômicos com média dada pelo usuário chegam novos clientes no supermercado.
+\item Cada cliente compra um número variável de produtos, que possuem preço variável, ambos gerados aleatoriamente em um intervalo.
+\item Há dois tipos de cliente: Um tipo de cliente escolhe a menor fila, o outro olha para a quantidade de compras das pessoas na fila e escolhe a com a menor quantidade para ficar.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Forma básica de funcionamento do Modelo}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Se o cliente não encontrar uma fila que o satisfaça, ele abandona o carrinho com as compras e vai embora. O valor dos produtos de um carrinho abandonado são computados como faturamento que o supermercado deixou de realizar.
+\item Se o tamanho de todas as filas ultrapassar um valor T (definido pelo usuário como parâmetro de simulação), o supermercado chamará mais um caixa para trabalhar. Conta-se o custo desse caixa em dobro (sobrehora) a partir do momento em que foi chamado. Considere o tempo que o caixa leva para ir ao supermercado como negligenciável. 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Forma básica de funcionamento do Modelo}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item O supermercado possuirá:
+\begin{itemize}
+\item Uma lista circular que conterá todos os caixas e que será percorrida constantemente até o fim da simulação.
+\item A cada passada pela lista, o supermercado incrementa o seu relógio interno de um segundo.
+\item Ao passar pela lista, toda vez que encontrar um cliente numa fila com tempo de saída igual ao tempo atual, atenderá o cliente e o tirará da fila.
+\item Se o tempo atual for o tempo da chegada do próximo cliente, este será gerado, suas compras geradas e um lugar para ele numa fila escolhido. Logo após, o tempo de chegada do próximo cliente será gerado. O programa inicia com a geração da chegada do primeiro cliente.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Geração de valores aleatórios em um intervalo}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Gerar valores aleatorios com distribuição uniforme no intervalo 0 a 1, utilize as funções rand e srand.
+\item Lembre-se de inicializar o sempre gerador de numeros aleatorios, antes de usar, para garantir de que sejam usados valores diferentes em cada simulação.
+\item Para gerar um numero aleatorio com distribuição uniforme em um intervalo, pegue este resultado, multiplique pelo tamanho do intervalo e adicione a valor do limite inferior do intervalo. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem de um Cliente}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Um cliente é uma classe que possui os seguintes atributos:
+\begin{itemize}
+\item Uma variavel que diz se ele busca a menor fila ou a com menos produtos;
+\item A informação se ele vai pagar com cartão ou dinheiro. A probabilidade de ele pagar com cartão é de 80\%;
+\item Um total de compras. Gerado entre 2 e 100;
+\item Um valor total das compras. O valor de cada ítem varia entre R\$ 1 e R\$ 90. Para cada ítem o valor é gerado aleatoriamente. Depois disso o valor total é computado;
+\item O tempo de chegada no supermercado;
+\item O tempo em que vai sair da fila do caixa.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{O tempo de saída da fila}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Computado para o cliente depois que é escolhido um caixa para o cliente. Calculado com base nas compras do cliente, desempenho do caixa, se vai pagar com cartão e na soma dos tempos das pessoas que estão na fila
+\item O sistema sempre olha o tempo de saída do primeiro da fila de cada caixa, para ver se ele vai sair agora;
+\item  Se não houver fila com menos que 10 pessoas, o cliente abandona o carrinho. Assuma que o cliente que abandona o carrinho está muito irritado vai escolher outro supermercado para suas próximas duas compras, isso significa que o faturamento deixado de realizar computado para cada cliente que abandona o carrinho é multiplicado por três.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem de um Caixa}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Um Caixa possui uma Fila de Clientes. O Caixa:
+\begin{itemize}
+\item Tem um identificador (Rosilda, Dona\_Beia, etc); 
+\item Tem um desempenho: eficiente, médio, ruim. Um caixa eficiente leva 1 segundo para um ítem, o médio leva 2 segundos e o ruim 4 segundos. Codifique eficiente, médio, ruim como numeros inteiros 1, 2, 3.
+\item Tem um salario.
+\item Se o cliente paga com cartão, o caixa eficiente leva mais 10 segundos para processar, o médio leva mais 25 segundos e o ruim mais 60 segundos. Se o cliente paga em dinheiro, o tempo de pagamento é Zero.
+\item O tempo de saída de um cliente é calculado quando ele é incluído na fila.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Atributos do Caixa}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item Ponteiro para a fila de clientes.
+\item Número de clientes na fila.
+\item Número de clientes atendidos.
+\item Tempo médio de espera de um cliente na fila.
+\item Faturamento total.
+\item Faturamento médio.
+\item Além desses, os vistos anteriormente:
+\begin{itemize}
+\item Identificador
+\item Eficiência.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelagem do Supermercado}
+\lstset{language=C++,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+\begin{itemize}
+\item A classe Supermercado possui os seguintes atributos:
+\begin{itemize}
+\item Um ponteiro para a lista circular de Caixas.
+\item Um relógio interno, inicialmente Zero.
+\item O número de clientes que desistiram.
+\item O valor das compras dos clientes que desistiram.
+\item Todos os outros dados estatísticos e operacionais podem ser calculados a partir dos dados armazenados nos caixas.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo de Configuração}
+\lstset{language=Bash,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+\begin{itemize}
+\item Ao ser iniciado o programa, este lerá um arquivo de configuração contendo as informações necessárias para a execução da simulação. Este arquivo conterá as seguintes informações, utilizando-se da seguinte sintaxe:
+\end{itemize}
+\begin{lstlisting}
+# comentarios quaisquer ate o fim da linha 
+# mais um comentario. 
+# ======================================= 
+Nome do Supermercado Inclusive Brancos 
+tempo_de_simulacao_em_horas 
+tempo_medio_de_chegada_de_cliente_em_segundos 
+numero de caixas 
+id_caixa1_sem_brancos eficiencia1 salario1 
+id_caixa2_sem_brancos eficiencia2 salario2 
+- - - 
+id_caixaN_sem_brancos eficienciaN salarioN
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Exemplo de Arquivo de Configuração}
+\lstset{language=Bash,
+          keywordstyle=\color{blue}\ttfamily,
+          stringstyle=\color{red}\ttfamily,
+          commentstyle=\color{OliveGreen}\ttfamily,
+          breaklines=true,
+          basicstyle=\ttfamily\footnotesize
+          }
+
+
+\begin{lstlisting}
+#============================= 
+# Dados do Super NaoCompre 
+# Programado por Hack++ 
+# Arquivo: naocompre.dat 
+#============================= 
+NaoCompre Costeira 
+5 
+7 
+4 
+Maria_Benta 1 800 
+Juliana_Digito 1 800 
+Zeca_Mole 3 180 
+Joao_DeMora 3 180 
+#================FIM 
+\end{lstlisting}
+\end{frame}
+
+
+
+
+
+
+
 
 
 
